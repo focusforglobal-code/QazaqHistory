@@ -25,7 +25,7 @@ main{max-width:1120px;margin:auto;padding:28px 20px 70px}
 dl{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:12px}dt{font-size:12px;color:var(--muted)}dd{margin:3px 0 0;font-weight:600}
 .hidden{display:none}.muted{color:var(--muted)}footer{border-top:1px solid var(--line);padding:22px;text-align:center;color:var(--muted);font-size:12px}
 a{color:var(--gold)}.lang{min-width:90px}
-@media(max-width:560px){header{padding:18px}.brand{font-size:18px}.hero{padding:24px}.details{padding:16px}}
+.battle-layout{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;margin:20px 0}.battle-side{border:1px solid var(--line);border-radius:14px;padding:18px;background:linear-gradient(160deg,#1b2b32,#111b21)}.battle-side h3{margin:0 0 12px;color:var(--gold);font-size:18px}.battle-side ul{margin:0;padding-left:19px}.battle-side li{margin:7px 0;color:var(--text)}.battle-side.enemy{background:linear-gradient(160deg,#302522,#1b1a1a)}.battle-facts{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:12px;margin:18px 0}.battle-fact{background:var(--panel2);border:1px solid var(--line);border-radius:12px;padding:14px}.battle-fact dt{font-size:12px;color:var(--gold);margin-bottom:5px}.battle-fact dd{margin:0;line-height:1.5}.battle-result{padding:16px;border:1px solid var(--gold);border-radius:12px;background:#24251f;margin:18px 0}.battle-result strong{color:var(--gold)}.detail-intro{font-size:16px;color:var(--muted);max-width:850px}.detail-back{margin-bottom:14px}@media(max-width:650px){.battle-layout{grid-template-columns:1fr}}@media(max-width:560px){header{padding:18px}.brand{font-size:18px}.hero{padding:24px}.details{padding:16px}}
 </style>
 </head>
 <body>
@@ -86,7 +86,28 @@ document.getElementById('count').textContent=items.length;
 document.getElementById('cards').innerHTML=items.map(r=>`<article class="card"><div class="tag">${r.year} · ${r.type==="rulers"?t.rulers:r.type==="battles"?t.battles:t.timelineTitle}</div><h3>${r.title[lang]}</h3><p>${r.desc[lang]}</p><button onclick="showDetail('${r.id}')">${t.open} →</button></article>`).join('')||`<p class="muted">${t.notfound}</p>`;
 document.querySelectorAll('[data-tab]').forEach(b=>b.classList.toggle('active',b.dataset.tab===tab));
 }
-function showDetail(id){let r=records.find(x=>x.id===id),t=data[lang];let f=r.fields[lang];document.getElementById('details').classList.remove('hidden');document.getElementById('details').innerHTML=`<div class="tag">${r.year}</div><h2>${r.title[lang]}</h2><p>${r.desc[lang]}</p><dl>${f.map(x=>`<div><dt>${x[0]}</dt><dd>${x[1]}</dd></div>`).join('')}</dl><div class="notice"><b>${t.sources}:</b><br>${r.sources}</div>`;document.getElementById('details').scrollIntoView({behavior:'smooth',block:'start'});}
+function showDetail(id){
+let r=records.find(x=>x.id===id),t=data[lang],f=r.fields[lang],isBattle=r.type==="battles";
+document.getElementById('details').classList.remove('hidden');
+if(isBattle){
+const left=f.filter(x=>/казах|қазақ/i.test(x[0]));
+const right=f.filter(x=>/джунгар|жоңғар|противник/i.test(x[0]));
+const sideHtml=(title,items,cls)=>`<section class="battle-side ${cls}"><h3>${title}</h3><ul>${items.length?items.map(x=>`<li><b>${x[0]}:</b> ${x[1]}</li>`).join(''):'<li>В карточке нет подтверждённых подробностей.</li>'}</ul></section>`;
+const result=f.find(x=>/итог|победитель|нәтижесі|жеңімпаз/i.test(x[0]));
+const excluded=new Set([...left,...right,result].filter(Boolean));
+const facts=f.filter(x=>!excluded.has(x));
+document.getElementById('details').innerHTML=`
+<div class="tag">${r.year} · ${t.battlesTitle}</div><h2>${r.title[lang]}</h2><p class="detail-intro">${r.desc[lang]}</p>
+<div class="battle-layout">${sideHtml(lang==="kz"?"Қазақ жағы":"Казахская сторона",left,"")}${sideHtml(lang==="kz"?"Қарсылас жақ":"Противоборствующая сторона",right,"enemy")}</div>
+${result?`<div class="battle-result"><strong>${result[0]}:</strong> ${result[1]}</div>`:''}
+<h3>${lang==="kz"?"Шайқас туралы толық мәлімет":"Подробности сражения"}</h3>
+<dl class="battle-facts">${facts.map(x=>`<div class="battle-fact"><dt>${x[0]}</dt><dd>${x[1]}</dd></div>`).join('')}</dl>
+<div class="notice"><b>${t.sources}:</b><br>${r.sources}</div>`
+}else{
+document.getElementById('details').innerHTML=`<div class="tag">${r.year}</div><h2>${r.title[lang]}</h2><p>${r.desc[lang]}</p><dl>${f.map(x=>`<div><dt>${x[0]}</dt><dd>${x[1]}</dd></div>`).join('')}</dl><div class="notice"><b>${t.sources}:</b><br>${r.sources}</div>`;
+}
+document.getElementById('details').scrollIntoView({behavior:'smooth',block:'start'});
+}
 document.querySelectorAll('[data-tab]').forEach(b=>b.addEventListener('click',()=>{tab=b.dataset.tab;document.getElementById('details').classList.add('hidden');render()}));
 document.getElementById('search').addEventListener('input',render);document.getElementById('period').addEventListener('change',render);
 document.getElementById('lang').addEventListener('change',e=>{lang=e.target.value;document.querySelectorAll('[data-i]').forEach(el=>{let k=el.dataset.i;if(data[lang][k])el.innerHTML=data[lang][k]});document.getElementById('search').placeholder=data[lang].search;document.getElementById('details').classList.add('hidden');render()});
