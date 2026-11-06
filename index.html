@@ -26,6 +26,38 @@ dl{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:12p
 .hidden{display:none}.muted{color:var(--muted)}footer{border-top:1px solid var(--line);padding:22px;text-align:center;color:var(--muted);font-size:12px}
 a{color:var(--gold)}.lang{min-width:90px}
 .battle-layout{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;margin:20px 0}.battle-side{border:1px solid var(--line);border-radius:14px;padding:18px;background:linear-gradient(160deg,#1b2b32,#111b21)}.battle-side h3{margin:0 0 12px;color:var(--gold);font-size:18px}.battle-side ul{margin:0;padding-left:19px}.battle-side li{margin:7px 0;color:var(--text)}.battle-side.enemy{background:linear-gradient(160deg,#302522,#1b1a1a)}.battle-facts{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:12px;margin:18px 0}.battle-fact{background:var(--panel2);border:1px solid var(--line);border-radius:12px;padding:14px}.battle-fact dt{font-size:12px;color:var(--gold);margin-bottom:5px}.battle-fact dd{margin:0;line-height:1.5}.battle-result{padding:16px;border:1px solid var(--gold);border-radius:12px;background:#24251f;margin:18px 0}.battle-result strong{color:var(--gold)}.detail-intro{font-size:16px;color:var(--muted);max-width:850px}.detail-back{margin-bottom:14px}@media(max-width:650px){.battle-layout{grid-template-columns:1fr}}@media(max-width:560px){header{padding:18px}.brand{font-size:18px}.hero{padding:24px}.details{padding:16px}}
+
+/* Interactive learning modules */
+.extra-tabs{display:flex;gap:8px;flex-wrap:wrap;margin:12px 0 22px}
+.extra-tabs button{background:linear-gradient(135deg,#263a40,#17252c);border-color:#695a37;color:var(--gold);font-weight:750}
+.extra-view{background:linear-gradient(160deg,#15232b,#10191f);border:1px solid var(--line);border-radius:18px;padding:clamp(16px,3vw,26px);margin:18px 0}
+.extra-view h2{color:var(--gold);margin:0 0 8px}
+.module-muted{color:var(--muted);margin:0 0 18px}
+.module-row{display:flex;gap:10px;flex-wrap:wrap;margin:14px 0}
+.module-row button.selected{border-color:var(--gold);color:var(--gold);background:#302b20}
+.module-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:12px}
+.module-card{background:var(--panel2);border:1px solid var(--line);border-radius:14px;padding:16px}
+.module-card h3{margin:0 0 8px;color:var(--gold)}
+.module-card p{margin:0 0 12px;color:var(--muted);font-size:14px}
+.quiz-question{font-size:20px;font-weight:750;margin:18px 0}
+.quiz-options{display:grid;grid-template-columns:1fr;gap:9px}
+.quiz-options button{text-align:left;padding:13px}
+.quiz-options button.correct{border-color:#79b88a;background:#1b3529;color:#dff5e5}
+.quiz-options button.wrong{border-color:#c87868;background:#3b2522;color:#ffe4df}
+.quiz-progress{color:var(--muted);font-size:13px}
+.quiz-result{padding:16px;border:1px solid var(--gold);border-radius:12px;margin-top:16px}
+.runner-shell{position:relative;overflow:hidden;border:1px solid #5a5038;border-radius:16px;background:linear-gradient(#20343a,#111c22);padding:16px}
+.runner-top{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;color:var(--gold);font-weight:750}
+.runner-track{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;min-height:210px;margin:16px 0 12px;position:relative}
+.runner-lane{border:1px dashed #64737a;border-radius:12px;background:repeating-linear-gradient(180deg,rgba(255,255,255,.025) 0 20px,transparent 20px 40px);display:flex;flex-direction:column;align-items:center;justify-content:flex-end;padding:10px;gap:12px;min-width:0}
+.runner-obstacle{min-height:72px;width:100%;display:flex;align-items:center;justify-content:center;text-align:center;padding:8px;border-radius:10px;background:#293b40;border:1px solid #8b7544;color:#fff;font-weight:750;font-size:14px}
+.runner-person{font-size:34px;line-height:1;filter:drop-shadow(0 4px 3px #0008);transition:transform .18s}
+.runner-lane.chosen .runner-person{transform:translateY(-13px) scale(1.12)}
+.runner-controls{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
+.runner-controls button{min-height:48px;font-weight:750;white-space:normal}
+.runner-message{margin:12px 0 0;color:var(--muted);min-height:24px}
+@media(max-width:560px){.extra-view{padding:14px}.runner-track{min-height:190px;gap:5px}.runner-obstacle{font-size:12px;padding:5px}.runner-controls{gap:5px}.runner-controls button{padding:9px 5px;font-size:13px}}
+
 </style>
 </head>
 <body>
@@ -34,10 +66,10 @@ a{color:var(--gold)}.lang{min-width:90px}
 <main>
 <section class="hero"><div class="eyebrow" data-i="eyebrow">История в фактах и источниках</div><h1 data-i="hero">Память о прошлом.<br>Понимание настоящего.</h1><p data-i="intro">Изучай государства, ханов, сражения и ключевые события истории Казахстана. Для спорных сведений показываем степень достоверности, а не выдаём предположения за факты.</p></section>
 <div class="toolbar"><input id="search" placeholder="Поиск: хан, битва, год…" data-ph="search"><select id="period"><option value="all" data-i="all">Все периоды</option><option value="kh">Казахское ханство</option><option value="ancient">Древняя и раннесредневековая история</option><option value="kh">Средневековые государства и ханства</option></select></div>
-<nav class="tabs"><button class="active" data-tab="all" data-i="alltab">Обзор</button><button data-tab="rulers" data-i="rulers">Правители</button><button data-tab="battles" data-i="battles">Битвы</button><button data-tab="timeline" data-i="timeline">Хронология</button></nav>
+<nav class="tabs"><button class="active" data-tab="all" data-i="alltab">Обзор</button><button data-tab="rulers" data-i="rulers">Правители</button><button data-tab="battles" data-i="battles">Битвы</button><button data-tab="timeline" data-i="timeline">Хронология</button><button type="button" id="testsNav" data-i="testsNav">Тесттер</button><button type="button" id="runnerNav" data-i="runnerNav">Тарихи жүгіру</button></nav>
 <div class="section-title"><h2 id="listTitle">Избранные материалы</h2><span class="muted" id="count"></span></div>
 <div class="grid" id="cards"></div>
-<div class="details hidden" id="details"></div>
+<div class="details hidden" id="details"></div><section id="extraView" class="extra-view hidden"></section>
 <div class="notice" data-i="caution">Важно: численность войск в источниках может расходиться. Если надёжного подтверждения точной цифры нет, сайт должен прямо указывать «не установлено» и приводить оценки с указанием источника.</div>
 </main>
 <footer>QAZAQ TARIHY · Учебный проект. Проверяйте исторические сведения по указанным источникам.</footer>
@@ -112,5 +144,163 @@ document.querySelectorAll('[data-tab]').forEach(b=>b.addEventListener('click',()
 document.getElementById('search').addEventListener('input',render);document.getElementById('period').addEventListener('change',render);
 document.getElementById('lang').addEventListener('change',e=>{lang=e.target.value;document.querySelectorAll('[data-i]').forEach(el=>{let k=el.dataset.i;if(data[lang][k])el.innerHTML=data[lang][k]});document.getElementById('search').placeholder=data[lang].search;document.getElementById('details').classList.add('hidden');render()});
 render();
+</script>
+
+<script>
+(function(){
+const extra=document.getElementById('extraView');
+const normalEls=['.toolbar','.tabs','.section-title','#cards','#details'];
+const hideNormal=()=>normalEls.forEach(s=>{const e=document.querySelector(s);if(e)e.classList.add('hidden')});
+const showNormal=()=>normalEls.forEach(s=>{const e=document.querySelector(s);if(e)e.classList.remove('hidden')});
+let moduleLang=()=>document.getElementById('lang').value;
+const words={
+ru:{testsNav:'Тесты',runnerNav:'Исторический забег',testsTitle:'Тесты по историческим битвам',testsIntro:'Выбери сражение, затем уровень сложности. В одном прохождении вопросы не повторяются.',chooseBattle:'Выбери битву',easy:'Лёгкий',medium:'Средний',hard:'Сложный',start:'Начать тест',back:'Назад к выбору',question:'Вопрос',next:'Далее',finish:'Завершить',score:'Результат',again:'Пройти ещё раз',correct:'Правильно',wrong:'Неправильно',runTitle:'Тарихи жүгіру — исторический забег',runIntro:'Выбирай правильный ответ в одной из трёх полос, чтобы пройти препятствие. Ошибка завершает забег.',record:'Рекорд',points:'Очки',startRun:'Начать забег',lane:'Полоса',gameOver:'Забег завершён',newRecord:'Новый рекорд!',restart:'Играть снова',choose:'Выбери правильный ответ',empty:'Для этой битвы пока нет вопросов.'},
+kz:{testsNav:'Тесттер',runnerNav:'Тарихи жүгіру',testsTitle:'Тарихи шайқастар бойынша тесттер',testsIntro:'Алдымен шайқасты, содан кейін күрделілік деңгейін таңда. Бір өту кезінде сұрақтар қайталанбайды.',chooseBattle:'Шайқасты таңда',easy:'Оңай',medium:'Орташа',hard:'Қиын',start:'Тестті бастау',back:'Таңдауға қайту',question:'Сұрақ',next:'Келесі',finish:'Аяқтау',score:'Нәтиже',again:'Қайта өту',correct:'Дұрыс',wrong:'Қате',runTitle:'Тарихи жүгіру',runIntro:'Кедергіден өту үшін үш жолдың біріндегі дұрыс жауапты таңда. Қате жауап ойынның аяқталуына әкеледі.',record:'Рекорд',points:'Ұпай',startRun:'Ойынды бастау',lane:'Жолақ',gameOver:'Ойын аяқталды',newRecord:'Жаңа рекорд!',restart:'Қайта ойнау',choose:'Дұрыс жауапты таңда',empty:'Бұл шайқасқа әзірге сұрақтар жоқ.'}
+};
+const battles={
+orb:{
+title:{ru:'Орбулакская битва',kz:'Орбұлақ шайқасы'},
+easy:[
+{ru:'В каком году произошла Орбулакская битва?',kz:'Орбұлақ шайқасы қай жылы болды?',a:'1643',o:['1643','1729','1465']},
+{ru:'Кто руководил казахской стороной?',kz:'Қазақ жасағын кім басқарды?',a:'Жангир-хан',o:['Жангир-хан','Абулхаир-хан','Керей хан']},
+{ru:'С каким государством сражались казахи?',kz:'Қазақтар қай мемлекетпен соғысты?',a:'Джунгарское ханство',o:['Джунгарское ханство','Могулистан','Ногайская Орда']},
+{ru:'К какой стороне относят победу в традиционном изложении?',kz:'Дәстүрлі баяндауда жеңіс қай тарапқа беріледі?',a:'Казахской стороне',o:['Казахской стороне','Джунгарской стороне','Победитель не указан']}
+],
+medium:[
+{ru:'Какого союзного военачальника связывают с помощью Жангир-хану?',kz:'Жәңгір ханға көмекке келген одақтас қолбасшы кім?',a:'Ялангтуш баһадур',o:['Ялангтуш баһадур','Эрдэни-Батур','Мөде']},
+{ru:'Какое преимущество использовали казахские воины?',kz:'Қазақ жауынгерлері қандай артықшылықты пайдаланды?',a:'Особенности узкого ущелья и подготовленную оборону',o:['Особенности узкого ущелья и подготовленную оборону','Морской флот','Крепостные пушки']},
+{ru:'Кто был правителем Джунгарского ханства, названным в карточке?',kz:'Карточкада Жоңғар хандығының билеушісі ретінде кім аталған?',a:'Эрдэни-Батур-хунтайджи',o:['Эрдэни-Батур-хунтайджи','Абулхаир-хан','Урус-хан']},
+{ru:'Как оценивается точность цифр о численности войск?',kz:'Әскер саны туралы цифрлардың дәлдігі қалай бағаланады?',a:'Точные числа надёжно не подтверждены',o:['Точные числа надёжно не подтверждены','Обе цифры точно установлены','Источники дают одинаковые числа']}
+],
+hard:[
+{ru:'Какая цифра встречается в традиционном рассказе о казахском отряде, но оспаривается исследователями?',kz:'Дәстүрлі әңгімеде кездесетін, бірақ зерттеушілер күмән келтіретін қазақ жасағының саны қанша?',a:'600 воинов',o:['600 воинов','6 000 воинов','60 000 воинов']},
+{ru:'Каков осторожный вывод о результате битвы?',kz:'Шайқас нәтижесі туралы сақ тұжырым қандай?',a:'Тактический успех казахской стороны; джунгары отступили',o:['Тактический успех казахской стороны; джунгары отступили','Полное уничтожение Джунгарского ханства','Победа джунгар']},
+{ru:'Какое историческое значение подчёркивает карточка?',kz:'Карточкада шайқастың қандай тарихи маңызы көрсетілген?',a:'Использование местности и союзной помощи',o:['Использование местности и союзной помощи','Начало Казахского ханства','Основание Могулистана']}
+]},
+bulanty:{
+title:{ru:'Битва при Буланты-Белеуты',kz:'Бұланты-Білеуті шайқасы'},
+easy:[
+{ru:'Против кого сражалось казахское ополчение?',kz:'Қазақ жасағы кімге қарсы соғысты?',a:'Против джунгар',o:['Против джунгар','Против усуней','Против сакских племён']},
+{ru:'Кто назван руководителем казахского ополчения?',kz:'Қазақ қолының басшысы ретінде кім аталған?',a:'Абулхаир-хан',o:['Абулхаир-хан','Жангир-хан','Туглук-Тимур']},
+{ru:'Какой стороной была одержана победа?',kz:'Жеңісті қай тарап иеленді?',a:'Казахским ополчением',o:['Казахским ополчением','Джунгарским войском','Победитель неизвестен']},
+{ru:'В каком регионе происходило сражение?',kz:'Шайқас қай өңірде өтті?',a:'В районе Улытау',o:['В районе Улытау','В Жетысу у Чигу','На берегу Каспия']}
+],
+medium:[
+{ru:'Какие реки дали название сражению?',kz:'Шайқас атауы қай өзендердің атауынан шыққан?',a:'Буланты и Белеуты',o:['Буланты и Белеуты','Или и Шу','Иртыш и Есиль']},
+{ru:'Какие силы участвовали со стороны казахов?',kz:'Қазақ жағынан қандай күштер қатысты?',a:'Объединённое ополчение трёх жузов',o:['Объединённое ополчение трёх жузов','Только отряд одного султана','Наёмный морской флот']},
+{ru:'Какие даты встречаются в источниках?',kz:'Деректерде қай жылдар кездеседі?',a:'1727 и 1728 годы',o:['1727 и 1728 годы','1643 и 1644 годы','1465 и 1466 годы']},
+{ru:'Какое последствие победы отмечено в карточке?',kz:'Карточкада жеңістің қандай салдары көрсетілген?',a:'Укрепление боевого духа',o:['Укрепление боевого духа','Немедленное исчезновение всех угроз','Перенос столицы в Туркестан']}
+],
+hard:[
+{ru:'Как называется плато, связанное с местом сражения?',kz:'Шайқас өткен жермен байланысты үстірт қалай аталады?',a:'Карасиыр',o:['Карасиыр','Устюрт','Бетпак-Дала']},
+{ru:'Что известно о точной численности обеих армий?',kz:'Екі әскердің нақты саны туралы не белгілі?',a:'Точная численность не установлена',o:['Точная численность не установлена','Обе армии насчитывали ровно 50 тысяч','Численность полностью совпадала']},
+{ru:'Почему в карточке указаны разные годы?',kz:'Карточкада неге бірнеше жыл көрсетілген?',a:'Датировка в источниках расходится',o:['Датировка в источниках расходится','Сражение точно шло три года','Год был официально отменён']}
+]},
+anyrakay:{
+title:{ru:'Аныракайская битва',kz:'Аңырақай шайқасы'},
+easy:[
+{ru:'Против кого сражались объединённые казахские силы?',kz:'Біріккен қазақ қолы кімге қарсы соғысты?',a:'Против Джунгарского ханства',o:['Против Джунгарского ханства','Против Могулистана','Против Саков']},
+{ru:'Кто победил в сражении согласно карточке?',kz:'Карточка бойынша шайқаста кім жеңді?',a:'Казахское ополчение',o:['Казахское ополчение','Джунгарское войско','Победитель не указан']},
+{ru:'Какие даты приводятся в карточке?',kz:'Карточкада қай жылдар көрсетілген?',a:'1729–1730',o:['1729–1730','1643–1644','1465–1466']},
+{ru:'Какой характер имело это сражение?',kz:'Бұл шайқас қандай сипатта болды?',a:'Крупное сражение казахско-джунгарской войны',o:['Крупное сражение казахско-джунгарской войны','Восстание против Российской империи','Морское сражение']}
+],
+medium:[
+{ru:'Кто назван руководителем казахского ополчения в ряде изложений?',kz:'Бірқатар еңбектерде қазақ қолының басшысы кім деп көрсетіледі?',a:'Абулхаир-хан',o:['Абулхаир-хан','Жангир-хан','Керей хан']},
+{ru:'Между какими озёрами расположен район, связанный с историческим ландшафтом битвы?',kz:'Шайқастың тарихи ландшафты қай көлдердің аралығымен байланысты?',a:'Балхашем и Алаколем',o:['Балхашем и Алаколем','Аралом и Каспием','Зайсаном и Маркаколем']},
+{ru:'Что произошло с джунгарскими силами?',kz:'Жоңғар күштерімен не болды?',a:'Они потерпели крупное поражение',o:['Они потерпели крупное поражение','Они основали Казахское ханство','Они заключили союз с саками']},
+{ru:'Какая особенность датировки отмечена в карточке?',kz:'Карточкада мерзімге қатысты қандай ерекшелік айтылған?',a:'В литературе встречаются 1729 и 1730 годы',o:['В литературе встречаются 1729 и 1730 годы','Все источники указывают 1643 год','Дата точно неизвестна даже приблизительно']}
+],
+hard:[
+{ru:'Что говорится о численности войск?',kz:'Әскер саны туралы не айтылған?',a:'Точные и общепризнанные цифры не установлены',o:['Точные и общепризнанные цифры не установлены','Точно было 100 тысяч с каждой стороны','Все источники приводят одну цифру']},
+{ru:'Какое историческое значение подчёркнуто?',kz:'Қандай тарихи маңызы атап көрсетілген?',a:'Символ совместных действий казахских сил',o:['Символ совместных действий казахских сил','Начало правления Керея','Создание Ногайской Орды']},
+{ru:'Что продолжилось после поражения джунгар?',kz:'Жоңғарлар жеңілгеннен кейін не жалғасты?',a:'Борьба за освобождение земель',o:['Борьба за освобождение земель','Поход на Китай','Распад Казахского ханства']}
+]}
+};
+let chosenBattle='',chosenLevel='',quizList=[],quizIndex=0,quizScore=0,quizLocked=false;
+function shuffle(a){const x=a.slice();for(let i=x.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[x[i],x[j]]=[x[j],x[i]]}return x}
+function showTests(){
+hideNormal();extra.classList.remove('hidden');renderBattlePicker();
+}
+function renderBattlePicker(){
+const l=moduleLang(),w=words[l];
+extra.innerHTML='<h2>'+w.testsTitle+'</h2><p class="module-muted">'+w.testsIntro+'</p><h3>'+w.chooseBattle+'</h3><div class="module-grid">'+Object.entries(battles).map(([id,b])=>'<article class="module-card"><h3>'+b.title[l]+'</h3><p>'+b.easy.length+' '+w.easy.toLowerCase()+' · '+b.medium.length+' '+w.medium.toLowerCase()+' · '+b.hard.length+' '+w.hard.toLowerCase()+'</p><button data-battle="'+id+'">'+w.chooseBattle+'</button></article>').join('')+'</div>';
+extra.querySelectorAll('[data-battle]').forEach(b=>b.onclick=()=>{chosenBattle=b.dataset.battle;renderLevelPicker()});
+}
+function renderLevelPicker(){
+const l=moduleLang(),w=words[l],b=battles[chosenBattle];
+extra.innerHTML='<button id="testBack">← '+w.back+'</button><h2>'+b.title[l]+'</h2><p class="module-muted">'+w.testsIntro+'</p><div class="module-row">'+['easy','medium','hard'].map(k=>'<button data-level="'+k+'">'+w[k]+'</button>').join('')+'</div><button id="testStart" disabled>'+w.start+'</button>';
+let level='';extra.querySelectorAll('[data-level]').forEach(btn=>btn.onclick=()=>{level=btn.dataset.level;chosenLevel=level;extra.querySelectorAll('[data-level]').forEach(x=>x.classList.toggle('selected',x===btn));document.getElementById('testStart').disabled=false});
+document.getElementById('testBack').onclick=renderBattlePicker;
+document.getElementById('testStart').onclick=()=>startQuiz();
+}
+function startQuiz(){
+const l=moduleLang();quizList=shuffle(battles[chosenBattle][chosenLevel]);quizIndex=0;quizScore=0;quizLocked=false;renderQuestion();
+}
+function renderQuestion(){
+const l=moduleLang(),w=words[l],q=quizList[quizIndex];
+extra.innerHTML='<button id="quizBack">← '+w.back+'</button><div class="quiz-progress">'+w.question+' '+(quizIndex+1)+' / '+quizList.length+' · '+w.score+': '+quizScore+'</div><div class="quiz-question">'+q[l]+'</div><div class="quiz-options">'+shuffle(q.o).map(v=>'<button data-answer="'+encodeURIComponent(v)+'">'+v+'</button>').join('')+'</div><div id="quizFeedback" class="runner-message"></div>';
+document.getElementById('quizBack').onclick=renderLevelPicker;
+extra.querySelectorAll('[data-answer]').forEach(btn=>btn.onclick=()=>{if(quizLocked)return;quizLocked=true;const v=decodeURIComponent(btn.dataset.answer);const good=v===q.a;if(good)quizScore++;extra.querySelectorAll('[data-answer]').forEach(x=>{x.disabled=true;const val=decodeURIComponent(x.dataset.answer);if(val===q.a)x.classList.add('correct');else if(x===btn)x.classList.add('wrong')});document.getElementById('quizFeedback').textContent=good?w.correct:w.wrong+' — '+q.a;const last=quizIndex===quizList.length-1;const next=document.createElement('button');next.textContent=last?w.finish:w.next;next.style.marginTop='14px';next.onclick=()=>{if(last)renderQuizResult();else{quizIndex++;quizLocked=false;renderQuestion()}};extra.appendChild(next)});
+}
+function renderQuizResult(){
+const l=moduleLang(),w=words[l],pct=Math.round(quizScore/quizList.length*100);
+extra.innerHTML='<h2>'+w.score+'</h2><div class="quiz-result"><div style="font-size:30px;font-weight:850;color:var(--gold)">'+quizScore+' / '+quizList.length+'</div><p>'+pct+'%</p></div><div class="module-row"><button id="quizAgain">'+w.again+'</button><button id="quizHome">'+w.back+'</button></div>';
+document.getElementById('quizAgain').onclick=startQuiz;document.getElementById('quizHome').onclick=renderBattlePicker;
+}
+
+function makeGameQuestions(){
+const l=moduleLang(),recordsNow=records.slice(),out=[];
+const add=(question,answer,distractors,key)=>{const opts=[...new Set([answer,...distractors].filter(Boolean))];if(opts.length<3)return;const choices=shuffle(opts).slice(0,3);if(!choices.includes(answer))choices[Math.floor(Math.random()*3)]=answer;out.push({q:question,a:answer,o:choices,id:key})};
+recordsNow.forEach(r=>{
+const title=r.title[l]||r.title.ru,year=r.year,desc=r.desc[l]||r.desc.ru;
+add(l==='kz'?'«'+title+'» тақырыбына сайтта қандай мерзім берілген?':'Какой период указан на сайте для материала «'+title+'»?',year,recordsNow.filter(x=>x.id!==r.id).map(x=>x.year),'year-'+r.id);
+add(l==='kz'?'Мына сипаттама қай тарихи тақырыпқа қатысты: '+desc:'Какой исторический материал описывает: '+desc,title,recordsNow.filter(x=>x.id!==r.id).map(x=>x.title[l]||x.title.ru),'desc-'+r.id);
+});
+recordsNow.forEach(r=>{
+const pairs=r.fields[l]||r.fields.ru;
+pairs.forEach((pair,idx)=>{
+const label=pair[0],answer=pair[1];
+const distractors=recordsNow.filter(x=>x.id!==r.id).flatMap(x=>(x.fields[l]||x.fields.ru).filter(p=>p[0]===label).map(p=>p[1]));
+if(new Set([answer,...distractors]).size>=3)add(l==='kz'?'«'+r.title[l]+'» карточкасында «'+label+'» деген сұраққа қандай жауап берілген?':'В карточке «'+r.title[l]+'» что указано в поле «'+label+'»?',answer,distractors,'field-'+r.id+'-'+idx);
+});
+});
+return out;
+}
+let gameQuestions=[],gameIndex=0,gameScore=0,gameRecord=Number(localStorage.getItem('qazaqTarihyRunnerRecord')||0),gameActive=false,lastGameId='';
+function startRunner(){
+gameQuestions=shuffle(makeGameQuestions());gameIndex=0;gameScore=0;gameActive=true;renderRunnerQuestion();
+}
+function renderRunnerHome(){
+const l=moduleLang(),w=words[l];
+extra.innerHTML='<h2>'+w.runTitle+'</h2><p class="module-muted">'+w.runIntro+'</p><div class="runner-shell"><div class="runner-top"><span>'+w.record+': <b>'+gameRecord+'</b></span><span>'+w.points+': 0</span></div><div style="padding:38px 8px;text-align:center;font-size:52px">🏃</div><button id="runStart">'+w.startRun+'</button></div>';
+document.getElementById('runStart').onclick=startRunner;
+}
+function renderRunnerQuestion(){
+const l=moduleLang(),w=words[l];
+if(gameIndex>=gameQuestions.length){gameQuestions=shuffle(makeGameQuestions());gameIndex=0;if(gameQuestions[0]&&gameQuestions[0].id===lastGameId)[gameQuestions[0],gameQuestions[1]]=[gameQuestions[1],gameQuestions[0]]}
+const q=gameQuestions[gameIndex];lastGameId=q.id;
+extra.innerHTML='<div class="runner-shell"><div class="runner-top"><span>'+w.record+': <b>'+gameRecord+'</b></span><span>'+w.points+': <b>'+gameScore+'</b></span></div><div class="quiz-progress">'+w.question+' '+(gameIndex+1)+'</div><div class="quiz-question">'+q.q+'</div><div class="runner-track">'+q.o.map((v,i)=>'<div class="runner-lane" data-lane="'+i+'"><div class="runner-obstacle">'+v+'</div><div class="runner-person">🏃</div></div>').join('')+'</div><div class="runner-controls">'+q.o.map((v,i)=>'<button data-run-answer="'+i+'">'+(l==='kz'?'Жолақ ':'Полоса ')+(i+1)+'</button>').join('')+'</div><div id="runMessage" class="runner-message">'+w.choose+'</div></div>';
+extra.querySelectorAll('[data-run-answer]').forEach(btn=>btn.onclick=()=>chooseRun(Number(btn.dataset.runAnswer)));
+function chooseRun(index){
+if(!gameActive)return;gameActive=false;const good=q.o[index]===q.a;const lane=extra.querySelector('[data-lane="'+index+'"]');if(lane)lane.classList.add('chosen');
+if(good){gameScore++;document.getElementById('runMessage').textContent=w.correct;gameIndex++;gameActive=true;setTimeout(renderRunnerQuestion,450)}
+else{document.getElementById('runMessage').textContent=w.wrong+' — '+q.a;setTimeout(endRunner,650)}
+}
+}
+function endRunner(){
+const l=moduleLang(),w=words[l],old=gameRecord;
+if(gameScore>gameRecord){gameRecord=gameScore;localStorage.setItem('qazaqTarihyRunnerRecord',String(gameRecord))}
+extra.innerHTML='<h2>'+w.gameOver+'</h2><div class="quiz-result"><p>'+w.points+': <b style="font-size:30px;color:var(--gold)">'+gameScore+'</b></p><p>'+w.record+': <b>'+gameRecord+'</b></p>'+(gameScore>old?'<p>'+w.newRecord+'</p>':'')+'</div><button id="runAgain">'+w.restart+'</button>';
+document.getElementById('runAgain').onclick=renderRunnerHome;
+}
+function showRunner(){hideNormal();extra.classList.remove('hidden');renderRunnerHome()}
+document.getElementById('testsNav').addEventListener('click',showTests);
+document.getElementById('runnerNav').addEventListener('click',showRunner);
+document.querySelectorAll('[data-tab]').forEach(b=>b.addEventListener('click',()=>{extra.classList.add('hidden');showNormal()}));
+const oldRender=window.render;
+document.getElementById('lang').addEventListener('change',()=>{const l=moduleLang(),w=words[l];document.getElementById('testsNav').textContent=w.testsNav;document.getElementById('runnerNav').textContent=w.runnerNav;if(!extra.classList.contains('hidden')){if(extra.querySelector('#runStart')||extra.querySelector('#runAgain'))renderRunnerHome();else if(extra.querySelector('[data-battle]')||extra.querySelector('#testBack'))renderBattlePicker()}});
+document.getElementById('testsNav').textContent=words.ru.testsNav;
+document.getElementById('runnerNav').textContent=words.ru.runnerNav;
+})();
 </script>
 </body></html>
