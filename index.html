@@ -58,7 +58,29 @@ a{color:var(--gold)}.lang{min-width:90px}
 .runner-message{margin:12px 0 0;color:var(--muted);min-height:24px}
 @media(max-width:560px){.extra-view{padding:14px}.runner-track{min-height:190px;gap:5px}.runner-obstacle{font-size:12px;padding:5px}.runner-controls{gap:5px}.runner-controls button{padding:9px 5px;font-size:13px}}
 
-#returnMenu{display:none;position:fixed;top:16px;right:16px;z-index:9999;margin:0;width:auto;max-width:260px;padding:11px 16px;border:1px solid var(--gold);border-radius:12px;background:#182630;color:var(--gold);font-weight:750;box-shadow:0 6px 22px #0008}#extraView:not(.hidden)+#returnMenu{display:inline-flex;align-items:center;justify-content:center}@media(max-width:560px){#returnMenu{top:10px;right:10px;padding:9px 12px;font-size:13px}}</style>
+#returnMenu{display:none;position:fixed;top:16px;right:16px;z-index:9999;margin:0;width:auto;max-width:260px;padding:11px 16px;border:1px solid var(--gold);border-radius:12px;background:#182630;color:var(--gold);font-weight:750;box-shadow:0 6px 22px #0008}#extraView:not(.hidden)+#returnMenu{display:inline-flex;align-items:center;justify-content:center}@media(max-width:560px){#returnMenu{top:10px;right:10px;padding:9px 12px;font-size:13px}}
+/* New history learning modules */
+.extra-tabs button,.module-action{border:1px solid var(--gold);background:#1c2c32;color:var(--gold)}
+.history-map{position:relative;min-height:330px;border:1px solid var(--line);border-radius:16px;overflow:hidden;background:radial-gradient(ellipse at 48% 48%,#263b36,#14232a 68%)}
+.history-map svg{position:absolute;inset:0;width:100%;height:100%;opacity:.78}
+.map-pin{position:absolute;transform:translate(-50%,-50%);padding:7px 9px;border-radius:999px;background:#111c22;border:1px solid var(--gold);color:var(--gold);font-size:12px;white-space:nowrap;z-index:2}
+.map-info{margin-top:12px;padding:15px;border:1px solid var(--line);border-radius:12px;background:var(--panel2);min-height:76px}
+.module-table{width:100%;border-collapse:collapse;min-width:620px}
+.module-table th,.module-table td{padding:11px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}
+.module-table th{color:var(--gold);font-size:13px}
+.table-scroll{overflow-x:auto;border:1px solid var(--line);border-radius:12px;margin:14px 0}
+.timeline-list{display:grid;gap:10px;border-left:2px solid var(--gold);margin:20px 0 10px 10px;padding-left:20px}
+.timeline-entry{position:relative;padding:13px;background:var(--panel2);border:1px solid var(--line);border-radius:12px}
+.timeline-entry:before{content:"";position:absolute;width:10px;height:10px;border-radius:50%;background:var(--gold);left:-27px;top:20px}
+.profile-card{display:grid;grid-template-columns:90px 1fr;gap:14px;align-items:center}
+.profile-mark{width:84px;height:84px;border-radius:50%;display:grid;place-items:center;background:#26383d;border:1px solid var(--gold);font-size:32px;color:var(--gold)}
+.achievement{display:flex;align-items:flex-start;gap:12px;padding:13px;border:1px solid var(--line);border-radius:12px;background:var(--panel2)}
+.achievement.locked{opacity:.58}
+.achievement-icon{font-size:24px}
+.scenario-option{display:block;width:100%;text-align:left;margin:9px 0;padding:13px}
+.scenario-feedback{padding:15px;border:1px solid var(--gold);border-radius:12px;background:#22271f;margin-top:14px}
+@media(max-width:560px){.map-pin{font-size:10px;padding:6px}.history-map{min-height:260px}.profile-card{grid-template-columns:1fr}.module-table th,.module-table td{padding:8px;font-size:13px}}
+</style>
 </head>
 <body>
 <header><div><div class="brand">QAZAQ TARIHY</div><div class="sub" data-i="subtitle">ИСТОРИЯ КАЗАХСТАНА · ИСТОРИЧЕСКАЯ ЭНЦИКЛОПЕДИЯ</div></div>
@@ -66,7 +88,7 @@ a{color:var(--gold)}.lang{min-width:90px}
 <main>
 <section class="hero"><div class="eyebrow" data-i="eyebrow">История в фактах и источниках</div><h1 data-i="hero">Память о прошлом.<br>Понимание настоящего.</h1><p data-i="intro">Изучай государства, ханов, сражения и ключевые события истории Казахстана. Для спорных сведений показываем степень достоверности, а не выдаём предположения за факты.</p></section>
 <div class="toolbar"><input id="search" placeholder="Поиск: хан, битва, год…" data-ph="search"><select id="period"><option value="all" data-i="all">Все периоды</option><option value="kh">Казахское ханство</option><option value="ancient">Древняя и раннесредневековая история</option><option value="kh">Средневековые государства и ханства</option></select></div>
-<nav class="tabs"><button class="active" data-tab="all" data-i="alltab">Обзор</button><button data-tab="rulers" data-i="rulers">Правители</button><button data-tab="battles" data-i="battles">Битвы</button><button data-tab="timeline" data-i="timeline">Хронология</button><button type="button" id="testsNav" data-i="testsNav">Тесттер</button><button type="button" id="runnerNav" data-i="runnerNav">Тарихи жүгіру</button></nav>
+<nav class="tabs"><button class="active" data-tab="all" data-i="alltab">Обзор</button><button data-tab="rulers" data-i="rulers">Правители</button><button data-tab="battles" data-i="battles">Битвы</button><button data-tab="timeline" data-i="timeline">Хронология</button><button type="button" id="testsNav" data-i="testsNav">Тесттер</button><button type="button" id="runnerNav" data-i="runnerNav">Тарихи жүгіру</button><button type="button" id="mapNav">Тарихи карта</button><button type="button" id="profileNav">Хандар профилі</button><button type="button" id="compareNav">Шайқастарды салыстыру</button><button type="button" id="timelineNav">Уақыт сызығы</button><button type="button" id="scenarioNav">Тарихшы режимі</button><button type="button" id="sourcesNav">Дереккөздер</button><button type="button" id="achievementsNav">Жетістіктер</button></nav>
 <div class="section-title"><h2 id="listTitle">Избранные материалы</h2><span class="muted" id="count"></span></div>
 <div class="grid" id="cards"></div>
 <div class="details hidden" id="details"></div><section id="extraView" class="extra-view hidden"></section><button type="button" id="returnMenu" class="return-menu">← Вернуться в меню</button>
@@ -218,8 +240,81 @@ hard:[
 };
 let chosenBattle='',chosenLevel='',quizList=[],quizIndex=0,quizScore=0,quizLocked=false;
 function shuffle(a){const x=a.slice();for(let i=x.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[x[i],x[j]]=[x[j],x[i]]}return x}
+
+let currentModule='';
+const moduleAchievements={
+map:{ru:'Исследователь карты',kz:'Карта зерттеушісі',descRu:'Открой историческую карту и изучи одну точку.',descKz:'Тарихи картаны ашып, бір нүктені зертте.',icon:'🗺️'},
+profiles:{ru:'Знаток ханов',kz:'Хандар білгірі',descRu:'Открой профиль одного из правителей.',descKz:'Билеушілердің бірінің профилін аш.',icon:'👑'},
+compare:{ru:'Сравнитель битв',kz:'Шайқастарды салыстырушы',descRu:'Изучи сравнительную таблицу сражений.',descKz:'Шайқастардың салыстырмалы кестесін зертте.',icon:'⚖️'},
+timeline:{ru:'Хранитель времени',kz:'Уақыт шежірешісі',descRu:'Открой временную линию.',descKz:'Уақыт сызығын аш.',icon:'⌛'},
+scenario:{ru:'Исторический аналитик',kz:'Тарихи сарапшы',descRu:'Пройди исторический сценарий.',descKz:'Тарихи жағдай тапсырмасын орында.',icon:'🧠'},
+sources:{ru:'Проверяющий источники',kz:'Дереккөз тексеруші',descRu:'Открой каталог источников.',descKz:'Дереккөздер тізімін аш.',icon:'📚'},
+quiz:{ru:'Знаток истории',kz:'Тарих білгірі',descRu:'Заверши хотя бы один тест.',descKz:'Кемінде бір тестті аяқта.',icon:'🏅'},
+runner:{ru:'Быстрый историк',kz:'Жылдам тарихшы',descRu:'Заверши исторический забег.',descKz:'Тарихи жүгіруді аяқта.',icon:'🏃'}
+};
+function getAchievementState(){try{return JSON.parse(localStorage.getItem('qazaqTarihyAchievements')||'{}')}catch(e){return {}}}
+function unlockAchievement(id){const a=getAchievementState();a[id]=true;localStorage.setItem('qazaqTarihyAchievements',JSON.stringify(a))}
+function safeText(v){return String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
+function showExtraModule(key){currentModule=key;hideNormal();extra.classList.remove('hidden');renderCurrentExtra()}
+function renderCurrentExtra(){if(currentModule==='map')renderHistoryMap();else if(currentModule==='profiles')renderProfiles();else if(currentModule==='compare')renderBattleCompare();else if(currentModule==='timeline')renderTimelineModule();else if(currentModule==='scenario')renderScenario();else if(currentModule==='sources')renderSources();else if(currentModule==='achievements')renderAchievements()}
+function renderHistoryMap(){
+const l=moduleLang(),k=l==='kz',title=k?'Қазақстан тарихының интерактивті картасы':'Интерактивная карта истории Казахстана';
+const pins=[
+{label:k?'Түркістан':'Туркестан',x:26,y:66,info:k?'Оңтүстік Қазақстандағы маңызды тарихи-мәдени орталық.':'Важный историко-культурный центр Южного Казахстана.',id:'formation'},
+{label:k?'Ұлытау':'Улытау',x:48,y:43,info:k?'Орталық Қазақстандағы тарихи аймақ; Бұланты-Білеуті шайқасының өңірімен байланысты.':'Исторический регион Центрального Казахстана; связан с районом битвы при Буланты-Белеуты.',id:'bulanty'},
+{label:k?'Жетісу':'Жетысу',x:76,y:57,info:k?'Орбұлақ шайқасы туралы дәстүрлі деректер осы кең өңірмен байланысты.':'Традиционные сведения об Орбулакской битве связывают её с этим широким регионом.',id:'orb'},
+{label:k?'Аңырақай өңірі':'Район Аныракая',x:65,y:78,info:k?'Аңырақай шайқасының тарихи ландшафты Балқаш пен Алакөл аралығымен байланыстырылады.':'Исторический ландшафт Аныракайской битвы связывают с пространством между Балхашом и Алаколем.',id:'anyrakay'},
+{label:k?'Тараз':'Тараз',x:34,y:81,info:k?'Ортағасырлық қала; Ұлы Жібек жолының маңызды орталықтарының бірі.':'Средневековый город и один из важных центров Великого шёлкового пути.',id:'turgesh'}
+];
+extra.innerHTML='<h2>'+title+'</h2><p class="module-muted">'+(k?'Нүктені басып, тарихи өңір туралы қысқаша мәліметті оқы. Бұл — оқу мақсатындағы сызбалық карта; шекаралар мен нүктелер дәл географиялық өлшем емес.':'Нажми на точку, чтобы прочитать краткую справку о регионе. Это учебная схематическая карта, а не точная географическая реконструкция границ и координат.')+'</p><div class="history-map"><svg viewBox="0 0 600 330" preserveAspectRatio="none" aria-hidden="true"><path d="M42 110 L95 75 L158 88 L205 60 L275 82 L330 68 L392 88 L455 78 L515 115 L560 155 L530 198 L548 237 L485 255 L430 245 L382 278 L320 256 L265 280 L215 250 L165 262 L115 220 L72 205 L50 160 Z" fill="#40594c" stroke="#d7ad59" stroke-width="2"/><path d="M65 160 Q170 110 270 155 T520 170 M125 225 Q260 180 470 225" fill="none" stroke="#a9b9a5" stroke-width="1.5" stroke-dasharray="5 7"/></svg>'+pins.map((p,i)=>'<button class="map-pin" style="left:'+p.x+'%;top:'+p.y+'%" data-map-pin="'+i+'">'+p.label+'</button>').join('')+'</div><div id="mapInfo" class="map-info">'+(k?'Картадағы нүктені таңда.':'Выбери точку на карте.')+'</div>';
+extra.querySelectorAll('[data-map-pin]').forEach(btn=>btn.onclick=()=>{const p=pins[Number(btn.dataset.mapPin)];unlockAchievement('map');const rec=records.find(r=>r.id===p.id);document.getElementById('mapInfo').innerHTML='<b>'+safeText(p.label)+'</b><p>'+safeText(p.info)+'</p>'+(rec?'<button class="module-action" data-open-map-record="'+rec.id+'">'+(k?'Тарихи материалды ашу':'Открыть исторический материал')+'</button>':'');const open=extra.querySelector('[data-open-map-record]');if(open)open.onclick=()=>{const rr=records.find(x=>x.id===open.dataset.openMapRecord);document.getElementById('mapInfo').innerHTML='<b>'+safeText(rr.title[l])+'</b><p>'+safeText(rr.desc[l])+'</p><p class="muted">'+safeText(rr.year)+'</p>'}});
+}
+function renderProfiles(){
+const l=moduleLang(),k=l==='kz',items=records.filter(r=>r.type==='rulers');
+extra.innerHTML='<h2>'+(k?'Хандар мен билеушілер':'Ханы и правители')+'</h2><p class="module-muted">'+(k?'Әзірге сайттағы дерекпен толықтырылған билеушілер профилі көрсетілген.':'Показаны профили правителей, для которых уже есть отдельные записи в базе сайта.')+'</p><div class="module-grid">'+items.map(r=>'<article class="module-card profile-card"><div class="profile-mark">♛</div><div><div class="tag">'+safeText(r.year)+'</div><h3>'+safeText(r.title[l])+'</h3><p>'+safeText(r.desc[l])+'</p><button data-profile="'+r.id+'">'+(k?'Профильді ашу':'Открыть профиль')+'</button></div></article>').join('')+'</div>'+(items.length?'':'<p class="muted">'+(k?'Әзірге профиль жоқ.':'Пока нет профилей.')+'</p>');
+extra.querySelectorAll('[data-profile]').forEach(b=>b.onclick=()=>{unlockAchievement('profiles');const r=records.find(x=>x.id===b.dataset.profile);const fields=r.fields[l]||r.fields.ru;extra.innerHTML='<button id="profileBack">← '+(k?'Тізімге қайту':'Назад к списку')+'</button><h2>'+safeText(r.title[l])+'</h2><p class="detail-intro">'+safeText(r.desc[l])+'</p><dl>'+fields.map(x=>'<div><dt>'+safeText(x[0])+'</dt><dd>'+safeText(x[1])+'</dd></div>').join('')+'</dl><div class="notice">'+(k?'Ескерту:':'Примечание:')+' '+r.sources+'</div>';document.getElementById('profileBack').onclick=renderProfiles});
+}
+function fieldValue(r,pattern,l){const f=r.fields[l]||r.fields.ru;const x=f.find(p=>pattern.test(p[0]));return x?x[1]:(l==='kz'?'Анықталмаған':'Не установлено')}
+function renderBattleCompare(){
+const l=moduleLang(),k=l==='kz',bs=records.filter(r=>r.type==='battles');
+unlockAchievement('compare');
+extra.innerHTML='<h2>'+(k?'Шайқастарды салыстыру':'Сравнение исторических сражений')+'</h2><p class="module-muted">'+(k?'Кесте сайттағы карточкаларда берілген мәліметтерді салыстырады. Дерек жоқ жерде «анықталмаған» деп көрсетіледі.':'Таблица сравнивает сведения из карточек сайта. Если надёжных данных нет, указано «не установлено».')+'</p><div class="table-scroll"><table class="module-table"><thead><tr><th>'+(k?'Көрсеткіш':'Параметр')+'</th>'+bs.map(b=>'<th>'+safeText(b.title[l])+'</th>').join('')+'</tr></thead><tbody>'+[
+[k?'Жылы':'Год',b=>b.year],
+[k?'Өткен жері':'Место',b=>fieldValue(b,/мест|өткен жер|орналасқан/i,l)],
+[k?'Қазақ жағы':'Казахская сторона',b=>fieldValue(b,/казахск|қазақ жағы|қазақ жасағы/i,l)],
+[k?'Қарсылас':'Противник',b=>fieldValue(b,/противник|жоңғар жағы|қарсыласы/i,l)],
+[k?'Басшы':'Руководитель',b=>fieldValue(b,/правител|қолбас|басқар|жетекш/i,l)],
+[k?'Әскер саны':'Численность войск',b=>fieldValue(b,/численност|әскер саны/i,l)],
+[k?'Нәтиже':'Результат',b=>fieldValue(b,/итог|победител|жеңімпаз|нәтижесі/i,l)]
+].map(row=>'<tr><th>'+row[0]+'</th>'+bs.map(b=>'<td>'+safeText(row[1](b))+'</td>').join('')+'</tr>').join('')+'</tbody></table></div><p class="muted">'+(k?'Ескерту: тарихи даталар мен әскер саны жөнінде ғылыми пікір айырмашылығы болуы мүмкін.':'Примечание: датировки и численность войск могут различаться в научной литературе.')+'</p>';
+}
+function renderTimelineModule(){
+const l=moduleLang(),k=l==='kz';
+const items=records.slice().sort((a,b)=>{const n=r=>{const m=String(r.year).match(/\d{3,4}/);if(!m)return 99999;return /до н\.э|б\.з\.д/i.test(r.year)?-Number(m[0]):Number(m[0])};return n(a)-n(b)});
+extra.innerHTML='<h2>'+(k?'Қазақстан тарихының уақыт сызығы':'Временная линия истории Казахстана')+'</h2><p class="module-muted">'+(k?'Оқиғалар мен мемлекеттер сайттағы мерзімдер бойынша реттелген. Кейбір кезеңдердің нақты шекарасы тарихнамада талқыланады.':'События и государства упорядочены по датам, указанным в материалах сайта. Границы некоторых периодов остаются предметом историографических дискуссий.')+'</p><div class="timeline-list">'+items.map(r=>'<article class="timeline-entry"><div class="tag">'+safeText(r.year)+'</div><h3>'+safeText(r.title[l])+'</h3><p>'+safeText(r.desc[l])+'</p><button data-timeline-record="'+r.id+'">'+(k?'Толығырақ':'Подробнее')+'</button></article>').join('')+'</div>';
+extra.querySelectorAll('[data-timeline-record]').forEach(b=>b.onclick=()=>{const r=records.find(x=>x.id===b.dataset.timelineRecord);const f=r.fields[l]||r.fields.ru;extra.innerHTML='<button id="timelineBack">← '+(k?'Уақыт сызығына қайту':'Назад к хронологии')+'</button><h2>'+safeText(r.title[l])+'</h2><p>'+safeText(r.desc[l])+'</p><dl>'+f.map(x=>'<div><dt>'+safeText(x[0])+'</dt><dd>'+safeText(x[1])+'</dd></div>').join('')+'</dl><div class="notice">'+r.sources+'</div>';document.getElementById('timelineBack').onclick=renderTimelineModule});
+}
+const scenarios=[
+{titleRu:'Керей и Жанибек в XV веке',titleKz:'XV ғасырдағы Керей мен Жәнібек',questionRu:'Перед лидерами возник выбор: как сохранить политическую самостоятельность группы, недовольной властью Абулхаира?',questionKz:'Әбілқайыр билігіне наразы топтың саяси дербестігін сақтау үшін басшылар қандай жолды таңдауы мүмкін?',options:[['Создать отдельный политический центр и искать поддержку','Жеке саяси орталық құрып, қолдау іздеу','Исторически близко к процессу отделения Керея и Жанибека; формирование ханства было постепенным.','Бұл Керей мен Жәнібектің бөліну үдерісіне жақын; хандықтың қалыптасуы біртіндеп жүрді.'],['Отказаться от самостоятельности без условий','Шартсыз дербестіктен бас тарту','Такой вариант не объясняет дальнейшее возникновение отдельного Казахского ханства.','Бұл нұсқа жеке Қазақ хандығының пайда болуын түсіндірмейді.'],['Считать государство созданным за один день','Мемлекет бір күнде құрылды деп есептеу','Это упрощение: образование ханства было длительным политическим процессом.','Бұл — қарапайымдату: хандықтың құрылуы ұзақ саяси үдеріс болды.']]},
+{titleRu:'Орбулакская битва',titleKz:'Орбұлақ шайқасы',questionRu:'Какой вывод историк должен сделать, если источники называют разные числа войск?',questionKz:'Деректерде әскер саны әртүрлі берілсе, тарихшы қандай қорытынды жасауы керек?',options:[['Указать, что точная численность не установлена','Нақты әскер саны анықталмағанын көрсету','Верно: спорные цифры нельзя выдавать за установленный факт.','Дұрыс: даулы сандарды нақты факт ретінде көрсетуге болмайды.'],['Выбрать самую большую цифру как точную','Ең үлкен санды нақты деп таңдау','Нет: большая цифра сама по себе не является более надёжной.','Жоқ: үлкен санның өзі сенімділікті білдірмейді.'],['Не указывать никаких оговорок','Ешқандай ескерту бермеу','Нет: читатель должен видеть неопределённость и состояние источников.','Жоқ: оқырман деректердің белгісіздігін білуі керек.']]},
+{titleRu:'Единство в XVIII веке',titleKz:'XVIII ғасырдағы бірлік',questionRu:'Как корректно описывать участие разных жузов в борьбе с джунгарскими войсками?',questionKz:'Жоңғар әскеріне қарсы күресте жүздердің қатысуын қалай дұрыс сипаттау керек?',options:[['Показывать совместные действия и различия между эпизодами','Бірлескен әрекеттерді және оқиғалар арасындағы айырмашылықтарды көрсету','Верно: участие сил и руководство могли различаться по времени и месту.','Дұрыс: жасақтардың құрамы мен басшылық уақыт пен орынға қарай өзгеруі мүмкін.'],['Приписать все события одному человеку','Барлық оқиғаны бір адамға телу','Это чрезмерное упрощение сложной исторической коалиции.','Бұл күрделі тарихи бірлестікті тым қарапайым көрсету.'],['Считать все сражения одним событием','Барлық шайқасты бір оқиға деп санау','Нет: отдельные сражения имели разные даты, места и обстоятельства.','Жоқ: әр шайқастың мерзімі, орны және жағдайы әртүрлі.']]}];
+function renderScenario(){
+const l=moduleLang(),k=l==='kz';
+extra.innerHTML='<h2>'+(k?'Тарихшы режимі':'Режим историка')+'</h2><p class="module-muted">'+(k?'Тарихи жағдайды оқып, деректерге сүйенген жауапты таңда. Бұл — оқу симуляциясы, нақты оқиғаның толық көшірмесі емес.':'Прочитай историческую ситуацию и выбери ответ, основанный на критическом отношении к источникам. Это учебная модель, а не точная реконструкция события.')+'</p><div class="module-grid">'+scenarios.map((s,i)=>'<article class="module-card"><h3>'+safeText(k?s.titleKz:s.titleRu)+'</h3><button data-scenario="'+i+'">'+(k?'Жағдайды бастау':'Начать сценарий')+'</button></article>').join('')+'</div>';
+extra.querySelectorAll('[data-scenario]').forEach(b=>b.onclick=()=>{const sc=scenarios[Number(b.dataset.scenario)];extra.innerHTML='<button id="scenarioBack">← '+(k?'Артқа':'Назад')+'</button><h2>'+safeText(k?sc.titleKz:sc.titleRu)+'</h2><p class="quiz-question">'+safeText(k?sc.questionKz:sc.questionRu)+'</p>'+sc.options.map((o,i)=>'<button class="scenario-option" data-scenario-option="'+i+'">'+safeText(k?o[1]:o[0])+'</button>').join('')+'<div id="scenarioFeedback"></div>';document.getElementById('scenarioBack').onclick=renderScenario;extra.querySelectorAll('[data-scenario-option]').forEach(opt=>opt.onclick=()=>{const choice=sc.options[Number(opt.dataset.scenarioOption)];document.getElementById('scenarioFeedback').innerHTML='<div class="scenario-feedback"><b>'+safeText(k?'Түсіндірме':'Разбор')+':</b><p>'+safeText(k?choice[3]:choice[2])+'</p><button id="scenarioDone">'+(k?'Аяқтау':'Завершить')+'</button></div>';extra.querySelectorAll('[data-scenario-option]').forEach(x=>x.disabled=true);document.getElementById('scenarioDone').onclick=()=>{unlockAchievement('scenario');renderScenario()}})});
+}
+function renderSources(){
+const l=moduleLang(),k=l==='kz';
+extra.innerHTML='<h2>'+(k?'Дереккөздер каталогы':'Каталог источников')+'</h2><p class="module-muted">'+(k?'Әр материалдың астындағы дереккөздерді тексер. Бұл тізім сайт карточкаларында көрсетілген сілтемелер мен ескертпелерді жинақтайды.':'Проверяй источники под каждой исторической записью. Каталог собирает ссылки и примечания, уже указанные в карточках сайта.')+'</p><div class="module-grid">'+records.map(r=>'<article class="module-card"><div class="tag">'+safeText(r.year)+'</div><h3>'+safeText(r.title[l])+'</h3><div class="muted">'+r.sources+'</div></article>').join('')+'</div>';
+unlockAchievement('sources');
+}
+function renderAchievements(){
+const l=moduleLang(),k=l==='kz',state=getAchievementState();
+extra.innerHTML='<h2>'+(k?'Жетістіктер':'Достижения')+'</h2><p class="module-muted">'+(k?'Жетістіктер осы браузерде сақталады.':'Достижения сохраняются в этом браузере на данном устройстве.')+'</p><div class="module-grid">'+Object.entries(moduleAchievements).map(([id,a])=>'<article class="achievement '+(state[id]?'':'locked')+'"><div class="achievement-icon">'+(state[id]?a.icon:'🔒')+'</div><div><b>'+safeText(a[l])+'</b><p class="muted">'+safeText(k?a.descKz:a.descRu)+'</p><span class="tag">'+(state[id]?(k?'АШЫЛДЫ':'ОТКРЫТО'):(k?'ҚҰЛПЫЛАНҒАН':'ЗАКРЫТО'))+'</span></div></article>').join('')+'</div>';
+}
+
 function showTests(){
-hideNormal();extra.classList.remove('hidden');renderBattlePicker();
+currentModule='tests';hideNormal();extra.classList.remove('hidden');renderBattlePicker();
 }
 function renderBattlePicker(){
 const l=moduleLang(),w=words[l];
@@ -243,7 +338,7 @@ document.getElementById('quizBack').onclick=renderLevelPicker;
 extra.querySelectorAll('[data-answer]').forEach(btn=>btn.onclick=()=>{if(quizLocked)return;quizLocked=true;const v=decodeURIComponent(btn.dataset.answer);const good=v===q.a;if(good)quizScore++;extra.querySelectorAll('[data-answer]').forEach(x=>{x.disabled=true;const val=decodeURIComponent(x.dataset.answer);if(val===q.a)x.classList.add('correct');else if(x===btn)x.classList.add('wrong')});document.getElementById('quizFeedback').textContent=good?w.correct:w.wrong+' — '+q.a;const last=quizIndex===quizList.length-1;const next=document.createElement('button');next.textContent=last?w.finish:w.next;next.style.marginTop='14px';next.onclick=()=>{if(last)renderQuizResult();else{quizIndex++;quizLocked=false;renderQuestion()}};extra.appendChild(next)});
 }
 function renderQuizResult(){
-const l=moduleLang(),w=words[l],pct=Math.round(quizScore/quizList.length*100);
+unlockAchievement('quiz');const l=moduleLang(),w=words[l],pct=Math.round(quizScore/quizList.length*100);
 extra.innerHTML='<h2>'+w.score+'</h2><div class="quiz-result"><div style="font-size:30px;font-weight:850;color:var(--gold)">'+quizScore+' / '+quizList.length+'</div><p>'+pct+'%</p></div><div class="module-row"><button id="quizAgain">'+w.again+'</button><button id="quizHome">'+w.back+'</button></div>';
 document.getElementById('quizAgain').onclick=startQuiz;document.getElementById('quizHome').onclick=renderBattlePicker;
 }
@@ -293,16 +388,24 @@ if(gameScore>gameRecord){gameRecord=gameScore;localStorage.setItem('qazaqTarihyR
 extra.innerHTML='<h2>'+w.gameOver+'</h2><div class="quiz-result"><p>'+w.points+': <b style="font-size:30px;color:var(--gold)">'+gameScore+'</b></p><p>'+w.record+': <b>'+gameRecord+'</b></p>'+(gameScore>old?'<p>'+w.newRecord+'</p>':'')+'</div><button id="runAgain">'+w.restart+'</button>';
 document.getElementById('runAgain').onclick=renderRunnerHome;
 }
-function showRunner(){hideNormal();extra.classList.remove('hidden');renderRunnerHome()}
+function showRunner(){currentModule='runner';hideNormal();extra.classList.remove('hidden');renderRunnerHome()}
 document.getElementById('returnMenu').addEventListener('click',()=>{extra.classList.add('hidden');showNormal();window.scrollTo(0,0)});
 document.getElementById('testsNav').addEventListener('click',showTests);
 document.getElementById('runnerNav').addEventListener('click',showRunner);
+document.getElementById('mapNav').addEventListener('click',()=>showExtraModule('map'));
+document.getElementById('profileNav').addEventListener('click',()=>showExtraModule('profiles'));
+document.getElementById('compareNav').addEventListener('click',()=>showExtraModule('compare'));
+document.getElementById('timelineNav').addEventListener('click',()=>showExtraModule('timeline'));
+document.getElementById('scenarioNav').addEventListener('click',()=>showExtraModule('scenario'));
+document.getElementById('sourcesNav').addEventListener('click',()=>showExtraModule('sources'));
+document.getElementById('achievementsNav').addEventListener('click',()=>showExtraModule('achievements'));
+
 document.querySelectorAll('[data-tab]').forEach(b=>b.addEventListener('click',()=>{extra.classList.add('hidden');showNormal()}));
 const oldRender=window.render;
-document.getElementById('lang').addEventListener('change',()=>{const l=moduleLang(),w=words[l];document.getElementById('testsNav').textContent=w.testsNav;document.getElementById('returnMenu').textContent=l==='kz'?'← Мәзірге оралу':'← Вернуться в меню';document.getElementById('runnerNav').textContent=w.runnerNav;if(!extra.classList.contains('hidden')){if(extra.querySelector('#runStart')||extra.querySelector('#runAgain'))renderRunnerHome();else if(extra.querySelector('[data-battle]')||extra.querySelector('#testBack'))renderBattlePicker()}});
+document.getElementById('lang').addEventListener('change',()=>{const l=moduleLang(),w=words[l];document.getElementById('testsNav').textContent=w.testsNav;document.getElementById('returnMenu').textContent=l==='kz'?'← Мәзірге оралу':'← Вернуться в меню';document.getElementById('runnerNav').textContent=w.runnerNav;document.getElementById('mapNav').textContent=l==='kz'?'Тарихи карта':'Историческая карта';document.getElementById('profileNav').textContent=l==='kz'?'Хандар профилі':'Профили ханов';document.getElementById('compareNav').textContent=l==='kz'?'Шайқастарды салыстыру':'Сравнить битвы';document.getElementById('timelineNav').textContent=l==='kz'?'Уақыт сызығы':'Временная линия';document.getElementById('scenarioNav').textContent=l==='kz'?'Тарихшы режимі':'Режим историка';document.getElementById('sourcesNav').textContent=l==='kz'?'Дереккөздер':'Источники';document.getElementById('achievementsNav').textContent=l==='kz'?'Жетістіктер':'Достижения';if(!extra.classList.contains('hidden')){if(['map','profiles','compare','timeline','scenario','sources','achievements'].includes(currentModule))renderCurrentExtra();else if(extra.querySelector('#runStart')||extra.querySelector('#runAgain'))renderRunnerHome();else if(extra.querySelector('[data-battle]')||extra.querySelector('#testBack'))renderBattlePicker()}});
 document.getElementById('returnMenu').textContent='← Вернуться в меню';
 document.getElementById('testsNav').textContent=words.ru.testsNav;
-document.getElementById('runnerNav').textContent=words.ru.runnerNav;
+document.getElementById('runnerNav').textContent=words.ru.runnerNav;document.getElementById('mapNav').textContent='Историческая карта';document.getElementById('profileNav').textContent='Профили ханов';document.getElementById('compareNav').textContent='Сравнить битвы';document.getElementById('timelineNav').textContent='Временная линия';document.getElementById('scenarioNav').textContent='Режим историка';document.getElementById('sourcesNav').textContent='Источники';document.getElementById('achievementsNav').textContent='Достижения';
 })();
 </script>
 </body></html>
