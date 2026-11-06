@@ -280,7 +280,7 @@ const l=moduleLang(),k=l==='kz',bs=records.filter(r=>r.type==='battles');
 unlockAchievement('compare');
 extra.innerHTML='<h2>'+(k?'Шайқастарды салыстыру':'Сравнение исторических сражений')+'</h2><p class="module-muted">'+(k?'Кесте сайттағы карточкаларда берілген мәліметтерді салыстырады. Дерек жоқ жерде «анықталмаған» деп көрсетіледі.':'Таблица сравнивает сведения из карточек сайта. Если надёжных данных нет, указано «не установлено».')+'</p><div class="table-scroll"><table class="module-table"><thead><tr><th>'+(k?'Көрсеткіш':'Параметр')+'</th>'+bs.map(b=>'<th>'+safeText(b.title[l])+'</th>').join('')+'</tr></thead><tbody>'+[
 [k?'Жылы':'Год',b=>b.year],
-[k?'Өткен жері':'Место',b=>fieldValue(b,/мест|өткен жер|орналасқан/i,l)],
+[k?'Өткен жері':'Место',b=>fieldValue(b,/мест|өткен жер|өткізілген жер|орналасқан/i,l)],
 [k?'Қазақ жағы':'Казахская сторона',b=>fieldValue(b,/казахск|қазақ жағы|қазақ жасағы/i,l)],
 [k?'Қарсылас':'Противник',b=>fieldValue(b,/противник|жоңғар жағы|қарсыласы/i,l)],
 [k?'Басшы':'Руководитель',b=>fieldValue(b,/правител|қолбас|басқар|жетекш/i,l)],
@@ -289,7 +289,7 @@ extra.innerHTML='<h2>'+(k?'Шайқастарды салыстыру':'Срав�
 ].map(row=>'<tr><th>'+row[0]+'</th>'+bs.map(b=>'<td>'+safeText(row[1](b))+'</td>').join('')+'</tr>').join('')+'</tbody></table></div><p class="muted">'+(k?'Ескерту: тарихи даталар мен әскер саны жөнінде ғылыми пікір айырмашылығы болуы мүмкін.':'Примечание: датировки и численность войск могут различаться в научной литературе.')+'</p>';
 }
 function renderTimelineModule(){
-const l=moduleLang(),k=l==='kz';
+unlockAchievement('timeline');const l=moduleLang(),k=l==='kz';
 const items=records.slice().sort((a,b)=>{const n=r=>{const m=String(r.year).match(/\d{3,4}/);if(!m)return 99999;return /до н\.э|б\.з\.д/i.test(r.year)?-Number(m[0]):Number(m[0])};return n(a)-n(b)});
 extra.innerHTML='<h2>'+(k?'Қазақстан тарихының уақыт сызығы':'Временная линия истории Казахстана')+'</h2><p class="module-muted">'+(k?'Оқиғалар мен мемлекеттер сайттағы мерзімдер бойынша реттелген. Кейбір кезеңдердің нақты шекарасы тарихнамада талқыланады.':'События и государства упорядочены по датам, указанным в материалах сайта. Границы некоторых периодов остаются предметом историографических дискуссий.')+'</p><div class="timeline-list">'+items.map(r=>'<article class="timeline-entry"><div class="tag">'+safeText(r.year)+'</div><h3>'+safeText(r.title[l])+'</h3><p>'+safeText(r.desc[l])+'</p><button data-timeline-record="'+r.id+'">'+(k?'Толығырақ':'Подробнее')+'</button></article>').join('')+'</div>';
 extra.querySelectorAll('[data-timeline-record]').forEach(b=>b.onclick=()=>{const r=records.find(x=>x.id===b.dataset.timelineRecord);const f=r.fields[l]||r.fields.ru;extra.innerHTML='<button id="timelineBack">← '+(k?'Уақыт сызығына қайту':'Назад к хронологии')+'</button><h2>'+safeText(r.title[l])+'</h2><p>'+safeText(r.desc[l])+'</p><dl>'+f.map(x=>'<div><dt>'+safeText(x[0])+'</dt><dd>'+safeText(x[1])+'</dd></div>').join('')+'</dl><div class="notice">'+r.sources+'</div>';document.getElementById('timelineBack').onclick=renderTimelineModule});
@@ -384,7 +384,7 @@ else{document.getElementById('runMessage').textContent=w.wrong+' — '+q.a;setTi
 }
 function endRunner(){
 const l=moduleLang(),w=words[l],old=gameRecord;
-if(gameScore>gameRecord){gameRecord=gameScore;localStorage.setItem('qazaqTarihyRunnerRecord',String(gameRecord))}
+if(gameScore>gameRecord){gameRecord=gameScore;localStorage.setItem('qazaqTarihyRunnerRecord',String(gameRecord))}unlockAchievement('runner');
 extra.innerHTML='<h2>'+w.gameOver+'</h2><div class="quiz-result"><p>'+w.points+': <b style="font-size:30px;color:var(--gold)">'+gameScore+'</b></p><p>'+w.record+': <b>'+gameRecord+'</b></p>'+(gameScore>old?'<p>'+w.newRecord+'</p>':'')+'</div><button id="runAgain">'+w.restart+'</button>';
 document.getElementById('runAgain').onclick=renderRunnerHome;
 }
