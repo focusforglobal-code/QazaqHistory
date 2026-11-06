@@ -169,8 +169,8 @@ function showDetail(id){
 let r=records.find(x=>x.id===id),t=data[lang],f=r.fields[lang],isBattle=r.type==="battles";
 document.getElementById('details').classList.remove('hidden');
 if(isBattle){
-const left=f.filter(x=>/казах|қазақ/i.test(x[0]));
-const right=f.filter(x=>/джунгар|жоңғар|противник/i.test(x[0]));
+const left=f.filter(x=>/казах|қазақ|сторона 1/i.test(x[0]));
+const right=f.filter(x=>/джунгар|жоңғар|противник|сторона 2/i.test(x[0]));
 const sideHtml=(title,items,cls)=>`<section class="battle-side ${cls}"><h3>${title}</h3><ul>${items.length?items.map(x=>`<li><b>${x[0]}:</b> ${x[1]}</li>`).join(''):'<li>В карточке нет подтверждённых подробностей.</li>'}</ul></section>`;
 const result=f.find(x=>/итог|победитель|нәтижесі|жеңімпаз/i.test(x[0]));
 const excluded=new Set([...left,...right,result].filter(Boolean));
