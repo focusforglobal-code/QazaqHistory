@@ -187,7 +187,7 @@ document.getElementById('details').innerHTML=`<div class="tag">${r.year}</div><h
 }
 document.getElementById('details').scrollIntoView({behavior:'smooth',block:'start'});
 }
-document.querySelectorAll('[data-tab]').forEach(b=>b.addEventListener('click',()=>{tab=b.dataset.tab;document.getElementById('details').classList.add('hidden');render()}));
+document.querySelector('.tabs').addEventListener('click',e=>{const b=e.target.closest('button[data-tab]');if(!b)return;tab=b.dataset.tab;document.getElementById('details').classList.add('hidden');render();},true);
 document.getElementById('search').addEventListener('input',render);document.getElementById('period').addEventListener('change',render);
 document.getElementById('lang').addEventListener('change',e=>{lang=e.target.value;document.querySelectorAll('[data-i]').forEach(el=>{let k=el.dataset.i;if(data[lang][k])el.innerHTML=data[lang][k]});document.getElementById('search').placeholder=data[lang].search;document.getElementById('details').classList.add('hidden');render()});
 render();
