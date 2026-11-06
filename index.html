@@ -58,7 +58,7 @@ a{color:var(--gold)}.lang{min-width:90px}
 .runner-message{margin:12px 0 0;color:var(--muted);min-height:24px}
 @media(max-width:560px){.extra-view{padding:14px}.runner-track{min-height:190px;gap:5px}.runner-obstacle{font-size:12px;padding:5px}.runner-controls{gap:5px}.runner-controls button{padding:9px 5px;font-size:13px}}
 
-</style>
+#returnMenu{display:none;margin:18px 0 8px;width:100%;max-width:260px}#extraView:not(.hidden)+#returnMenu{display:inline-flex;align-items:center;justify-content:center}</style>
 </head>
 <body>
 <header><div><div class="brand">QAZAQ TARIHY</div><div class="sub" data-i="subtitle">ИСТОРИЯ КАЗАХСТАНА · ИСТОРИЧЕСКАЯ ЭНЦИКЛОПЕДИЯ</div></div>
@@ -69,7 +69,7 @@ a{color:var(--gold)}.lang{min-width:90px}
 <nav class="tabs"><button class="active" data-tab="all" data-i="alltab">Обзор</button><button data-tab="rulers" data-i="rulers">Правители</button><button data-tab="battles" data-i="battles">Битвы</button><button data-tab="timeline" data-i="timeline">Хронология</button><button type="button" id="testsNav" data-i="testsNav">Тесттер</button><button type="button" id="runnerNav" data-i="runnerNav">Тарихи жүгіру</button></nav>
 <div class="section-title"><h2 id="listTitle">Избранные материалы</h2><span class="muted" id="count"></span></div>
 <div class="grid" id="cards"></div>
-<div class="details hidden" id="details"></div><section id="extraView" class="extra-view hidden"></section>
+<div class="details hidden" id="details"></div><section id="extraView" class="extra-view hidden"></section><button type="button" id="returnMenu" class="return-menu">← Вернуться в меню</button>
 <div class="notice" data-i="caution">Важно: численность войск в источниках может расходиться. Если надёжного подтверждения точной цифры нет, сайт должен прямо указывать «не установлено» и приводить оценки с указанием источника.</div>
 </main>
 <footer>QAZAQ TARIHY · Учебный проект. Проверяйте исторические сведения по указанным источникам.</footer>
@@ -294,11 +294,13 @@ extra.innerHTML='<h2>'+w.gameOver+'</h2><div class="quiz-result"><p>'+w.points+'
 document.getElementById('runAgain').onclick=renderRunnerHome;
 }
 function showRunner(){hideNormal();extra.classList.remove('hidden');renderRunnerHome()}
+document.getElementById('returnMenu').addEventListener('click',()=>{extra.classList.add('hidden');showNormal();window.scrollTo(0,0)});
 document.getElementById('testsNav').addEventListener('click',showTests);
 document.getElementById('runnerNav').addEventListener('click',showRunner);
 document.querySelectorAll('[data-tab]').forEach(b=>b.addEventListener('click',()=>{extra.classList.add('hidden');showNormal()}));
 const oldRender=window.render;
-document.getElementById('lang').addEventListener('change',()=>{const l=moduleLang(),w=words[l];document.getElementById('testsNav').textContent=w.testsNav;document.getElementById('runnerNav').textContent=w.runnerNav;if(!extra.classList.contains('hidden')){if(extra.querySelector('#runStart')||extra.querySelector('#runAgain'))renderRunnerHome();else if(extra.querySelector('[data-battle]')||extra.querySelector('#testBack'))renderBattlePicker()}});
+document.getElementById('lang').addEventListener('change',()=>{const l=moduleLang(),w=words[l];document.getElementById('testsNav').textContent=w.testsNav;document.getElementById('returnMenu').textContent=l==='kz'?'← Мәзірге оралу':'← Вернуться в меню';document.getElementById('runnerNav').textContent=w.runnerNav;if(!extra.classList.contains('hidden')){if(extra.querySelector('#runStart')||extra.querySelector('#runAgain'))renderRunnerHome();else if(extra.querySelector('[data-battle]')||extra.querySelector('#testBack'))renderBattlePicker()}});
+document.getElementById('returnMenu').textContent='← Вернуться в меню';
 document.getElementById('testsNav').textContent=words.ru.testsNav;
 document.getElementById('runnerNav').textContent=words.ru.runnerNav;
 })();
