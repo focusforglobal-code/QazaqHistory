@@ -87,21 +87,21 @@ a{color:var(--gold)}.lang{min-width:90px}
 <select class="lang" id="lang" aria-label="Language"><option value="ru">RU</option><option value="kz">KZ</option></select></header>
 <main>
 <section class="hero"><div class="eyebrow" data-i="eyebrow">История в фактах и источниках</div><h1 data-i="hero">Память о прошлом.<br>Понимание настоящего.</h1><p data-i="intro">Изучай государства, ханов, сражения и ключевые события истории Казахстана. Для спорных сведений показываем степень достоверности, а не выдаём предположения за факты.</p></section>
-<div class="toolbar"><input id="search" placeholder="Поиск: хан, битва, год…" data-ph="search"><select id="period"><option value="all" data-i="all">Все периоды</option><option value="kh">Казахское ханство</option><option value="ancient">Древняя и раннесредневековая история</option><option value="kh">Средневековые государства и ханства</option></select></div>
-<nav class="tabs"><button class="active" data-tab="all" data-i="alltab">Обзор</button><button data-tab="rulers" data-i="rulers">Правители</button><button data-tab="battles" data-i="battles">Битвы</button><button data-tab="timeline" data-i="timeline">Хронология</button><button type="button" id="testsNav" data-i="testsNav">Тесттер</button><button type="button" id="runnerNav" data-i="runnerNav">Тарихи жүгіру</button><button type="button" id="mapNav">Тарихи карта</button><button type="button" id="profileNav">Хандар профилі</button><button type="button" id="compareNav">Шайқастарды салыстыру</button><button type="button" id="timelineNav">Уақыт сызығы</button><button type="button" id="scenarioNav">Тарихшы режимі</button><button type="button" id="sourcesNav">Дереккөздер</button><button type="button" id="achievementsNav">Жетістіктер</button></nav>
+<div class="toolbar"><input id="search" placeholder="Поиск: хан, битва, год…" data-ph="search"><select id="period"><option value="all" data-i="all">Все периоды</option><option value="kh" data-i="khperiod">Казахское ханство</option><option value="ancient" data-i="ancientperiod">Древняя и раннесредневековая история</option><option value="medieval" data-i="medievalperiod">Средневековые государства и ханства</option></select></div>
+<nav class="tabs"><button class="active" data-tab="all" data-i="alltab">Обзор</button><button data-tab="rulers" data-i="rulers">Правители</button><button data-tab="battles" data-i="battles">Битвы</button><button data-tab="timeline" data-i="timeline">Хронология</button><button type="button" id="testsNav" data-i="testsNav">Тесттер</button><button type="button" id="runnerNav" data-i="runnerNav">Тарихи жүгіру</button><button type="button" id="mapNav">Тарихи карта</button><button type="button" id="profileNav">Хандар профилі</button><button type="button" id="timelineNav">Уақыт сызығы</button><button type="button" id="sourcesNav">Дереккөздер</button></nav>
 <div class="section-title"><h2 id="listTitle">Избранные материалы</h2><span class="muted" id="count"></span></div>
 <div class="grid" id="cards"></div>
 <div class="details hidden" id="details"></div><section id="extraView" class="extra-view hidden"></section><button type="button" id="returnMenu" class="return-menu">← Вернуться в меню</button>
 <div class="notice" data-i="caution">Важно: численность войск в источниках может расходиться. Если надёжного подтверждения точной цифры нет, сайт должен прямо указывать «не установлено» и приводить оценки с указанием источника.</div>
 </main>
-<footer>QAZAQ TARIHY · Учебный проект. Проверяйте исторические сведения по указанным источникам.</footer>
+<footer>QAZAQ TARIHY · <span data-i="footer">Учебный проект. Проверяйте исторические сведения по указанным источникам.</span></footer>
 <script>
 const data={
 ru:{
-subtitle:"ИСТОРИЯ КАЗАХСТАНА · ИСТОРИЧЕСКАЯ ЭНЦИКЛОПЕДИЯ",eyebrow:"История в фактах и источниках",hero:"Память о прошлом.<br>Понимание настоящего.",intro:"Изучай государства, ханов, сражения и ключевые события истории Казахстана. Для спорных сведений показываем степень достоверности, а не выдаём предположения за факты.",search:"Поиск: хан, битва, год…",all:"Все периоды",alltab:"Обзор",rulers:"Правители",battles:"Битвы",timeline:"Хронология",caution:"Важно: численность войск в источниках может расходиться. Если надёжного подтверждения точной цифры нет, сайт должен прямо указывать «не установлено» и приводить оценки с указанием источника.",list:"Избранные материалы",open:"Подробнее",unknown:"Точная численность не установлена в рамках этой карточки",army:"Численность войск",side:"Сторона",result:"Итог",sources:"Источники и примечания",period:"Период",years:"Годы",role:"Роль",rulersTitle:"Правители",battlesTitle:"Битвы",timelineTitle:"Хронология",notfound:"Ничего не найдено."
+subtitle:"ИСТОРИЯ КАЗАХСТАНА · ИСТОРИЧЕСКАЯ ЭНЦИКЛОПЕДИЯ",eyebrow:"История в фактах и источниках",hero:"Память о прошлом.<br>Понимание настоящего.",intro:"Изучай государства, ханов, сражения и ключевые события истории Казахстана. Для спорных сведений показываем степень достоверности, а не выдаём предположения за факты.",search:"Поиск: хан, битва, год…",all:"Все периоды",alltab:"Обзор",rulers:"Правители",battles:"Битвы",timeline:"Хронология",caution:"Важно: численность войск в источниках может расходиться. Если надёжного подтверждения точной цифры нет, сайт должен прямо указывать «не установлено» и приводить оценки с указанием источника.",list:"Избранные материалы",open:"Подробнее",unknown:"Точная численность не установлена в рамках этой карточки",army:"Численность войск",side:"Сторона",result:"Итог",sources:"Источники и примечания",period:"Период",years:"Годы",role:"Роль",rulersTitle:"Правители",battlesTitle:"Битвы",timelineTitle:"Хронология",notfound:"Ничего не найдено.",khperiod:"Казахское ханство",ancientperiod:"Древняя и раннесредневековая история",medievalperiod:"Средневековые государства и ханства",footer:"Учебный проект. Проверяйте исторические сведения по указанным источникам."
 },
 kz:{
-subtitle:"ҚАЗАҚСТАН ТАРИХЫ · ТАРИХИ ЭНЦИКЛОПЕДИЯ",eyebrow:"Деректер мен дереккөздерге негізделген тарих",hero:"Өткенді есте сақтау.<br>Бүгінді түсіну.",intro:"Қазақстан тарихындағы мемлекеттерді, хандарды, шайқастарды және маңызды оқиғаларды зертте. Даулы мәліметтер болжам ретінде белгіленеді, нақты факт ретінде көрсетілмейді.",search:"Іздеу: хан, шайқас, жыл…",all:"Барлық кезең",alltab:"Шолу",rulers:"Билеушілер",battles:"Шайқастар",timeline:"Хронология",caution:"Маңызды: әскер саны туралы деректер әртүрлі болуы мүмкін. Нақты сан сенімді расталмаса, «анықталмаған» деп көрсетіп, бағалауды дереккөзімен бірге беру керек.",list:"Таңдаулы материалдар",open:"Толығырақ",unknown:"Бұл карточкада нақты әскер саны анықталмаған",army:"Әскер саны",side:"Тарап",result:"Нәтиже",sources:"Дереккөздер мен ескертпелер",period:"Кезең",years:"Жылдары",role:"Рөлі",rulersTitle:"Билеушілер",battlesTitle:"Шайқастар",timelineTitle:"Хронология",notfound:"Ештеңе табылмады."
+subtitle:"ҚАЗАҚСТАН ТАРИХЫ · ТАРИХИ ЭНЦИКЛОПЕДИЯ",eyebrow:"Деректер мен дереккөздерге негізделген тарих",hero:"Өткенді есте сақтау.<br>Бүгінді түсіну.",intro:"Қазақстан тарихындағы мемлекеттерді, хандарды, шайқастарды және маңызды оқиғаларды зертте. Даулы мәліметтер болжам ретінде белгіленеді, нақты факт ретінде көрсетілмейді.",search:"Іздеу: хан, шайқас, жыл…",all:"Барлық кезең",alltab:"Шолу",rulers:"Билеушілер",battles:"Шайқастар",timeline:"Хронология",caution:"Маңызды: әскер саны туралы деректер әртүрлі болуы мүмкін. Нақты сан сенімді расталмаса, «анықталмаған» деп көрсетіп, бағалауды дереккөзімен бірге беру керек.",list:"Таңдаулы материалдар",open:"Толығырақ",unknown:"Бұл карточкада нақты әскер саны анықталмаған",army:"Әскер саны",side:"Тарап",result:"Нәтиже",sources:"Дереккөздер мен ескертпелер",period:"Кезең",years:"Жылдары",role:"Рөлі",rulersTitle:"Билеушілер",battlesTitle:"Шайқастар",timelineTitle:"Хронология",notfound:"Ештеңе табылмады.",khperiod:"Қазақ хандығы",ancientperiod:"Ежелгі және ерте ортағасырлық тарих",medievalperiod:"Ортағасырлық мемлекеттер мен хандықтар",footer:"Оқу жобасы. Тарихи мәліметтерді көрсетілген дереккөздер арқылы тексеріңіз."
 }};
 const records=[
 {id:"kerei",type:"rulers",period:"kh",year:"XV ғасыр",title:{ru:"Керей хан",kz:"Керей хан"},desc:{ru:"Казахский хан, один из основателей Казахского ханства вместе с Жанибек-ханом.",kz:"Қазақ ханы, Жәнібек ханмен бірге Қазақ хандығының негізін қалаушылардың бірі."},fields:{ru:[["Роль","Основатель Казахского ханства"],["Период","Вторая половина XV века (точные даты правления требуют сверки)"]],kz:[["Рөлі","Қазақ хандығының негізін қалаушы"],["Кезеңі","XV ғасырдың екінші жартысы (билік құрған нақты жылдары тексеруді қажет етеді)"]]},sources:"Исторические исследования по образованию Казахского ханства; точные даты в разных изложениях могут различаться."},
@@ -181,7 +181,7 @@ document.getElementById('details').innerHTML=`
 ${result?`<div class="battle-result"><strong>${result[0]}:</strong> ${result[1]}</div>`:''}
 <h3>${lang==="kz"?"Шайқас туралы толық мәлімет":"Подробности сражения"}</h3>
 <dl class="battle-facts">${facts.map(x=>`<div class="battle-fact"><dt>${x[0]}</dt><dd>${x[1]}</dd></div>`).join('')}</dl>
-<div class="notice"><b>${t.sources}:</b><br>${r.sources}</div>`
+<div class="notice"><b>${t.sources}:</b><br>${sourceText(r,lang)}</div>`
 }else{
 document.getElementById('details').innerHTML=`<div class="tag">${r.year}</div><h2>${r.title[lang]}</h2><p>${r.desc[lang]}</p><dl>${f.map(x=>`<div><dt>${x[0]}</dt><dd>${x[1]}</dd></div>`).join('')}</dl><div class="notice"><b>${t.sources}:</b><br>${r.sources}</div>`;
 }
@@ -280,8 +280,39 @@ runner:{ru:'Быстрый историк',kz:'Жылдам тарихшы',desc
 function getAchievementState(){try{return JSON.parse(localStorage.getItem('qazaqTarihyAchievements')||'{}')}catch(e){return {}}}
 function unlockAchievement(id){const a=getAchievementState();a[id]=true;localStorage.setItem('qazaqTarihyAchievements',JSON.stringify(a))}
 function safeText(v){return String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
+function sourceText(r,l){
+if(l!=='kz')return r.sources;
+const localized={
+kerei:'Қазақ хандығының құрылуы туралы тарихи зерттеулер. Билік құрған жылдары жөніндегі мәліметтер әр еңбекте әртүрлі берілуі мүмкін.',
+zhanibek:'Қазақ хандығының құрылуы туралы тарихи зерттеулер.',
+orb:'Зерттеулер Орбұлақ шайқасының орны мен әскер саны туралы дәстүрлі мәліметтердің кейбіріне күмән келтіреді. Даулы сандарды нақты факт ретінде көрсетуге болмайды.',
+formation:'Қазақ хандығының тарихына арналған оқу және ғылыми еңбектер. Бұл мерзім бір күнде болған оқиғаны емес, қалыптасу кезеңін білдіреді.',
+saka:'Ежелгі жазба деректер мен археологиялық зерттеулер. Томирис пен Кир туралы әңгіме Геродот еңбегінде кездеседі, алайда оқиғаның кейбір бөлшектері даулы.',
+usun:'Қытай жылнамалары. Жекелеген орталықтардың мерзімі мен орналасуы зерттеулерде нақтыланып келеді.',
+kangju:'Қаңлы мемлекетінің хронологиясы мен аумағы жазба және археологиялық деректер негізінде қайта қарастырылады.',
+huns:'Қытай жылнамалары және көшпелі империялар туралы қазіргі зерттеулер. Этнонимдер мен көші-қон байланыстары күрделі.',
+turkic:'Орхон жазбалары, Византия және Қытай жазба деректері. Жекелеген билеушілердің мерзімдері нақтылануы мүмкін.',
+westturk:'Ерте ортағасырлық түркі мемлекеттерінің тарихына арналған зерттеулер.',
+turgesh:'Ортағасырлық араб, қытай және түркі деректері. Оқулықтардағы кезеңдеу аздап ерекшеленуі мүмкін.',
+karluk:'Қарлұқтар және ерте ортағасырлық Орталық Азия тарихы жөніндегі ғылыми еңбектер.',
+karakhanid:'Ортағасырлық жылнамалар мен Жетісу және Оңтүстік Қазақстан қалаларына қатысты археологиялық зерттеулер.',
+oghuz:'Ортағасырлық араб-парсы географиялық және тарихи шығармалары.',
+kimak:'Араб-парсы географиялық шығармалары және қазіргі тарихи зерттеулер.',
+kipchak:'Ортағасырлық шығыс деректері. «Қыпшақ хандығы» атауы күрделі саяси құрылымды жинақтап сипаттау үшін қолданылады.',
+mongol:'OpenStax World History және Cambridge History of Inner Asia еңбектері. Ұлыстардың кейінгі қалыптасуын Шыңғыс хан дәуірінде бір сәтте толық бөлінді деп көрсету — тым қарапайым түсіндіру.',
+jochi:'Oxford Research Encyclopedia of Asian History және Жошы ұлысының Қазақ хандығының саяси тарихымен сабақтастығын қарастыратын зерттеулер.',
+golden:'Алтын Орда тарихына арналған академиялық зерттеулер. «Алтын Орда» атауы кейінгі тарихнамада кең таралған.',
+akorda:'E-history.kz: Ақ Орда мен Көк Орда атауларының деректері мен тарихнамасы; Oxford Research Encyclopedia. Бұл атауларға қатысты тарихнамада бірнеше түсіндіру бар.',
+moghulistan:'Моғолстан тарихына арналған ортағасырлық деректер мен зерттеулер. Мемлекеттің шекарасы мен хронологиясы уақыт өте өзгеріп отырған.',
+abulkhair:'Oxford Research Encyclopedia of Asian History: Қазақ хандығы Жошы ұлысының саяси ортасында қалыптасты; Керей мен Жәнібек 1450-жылдары Әбілқайырдан бөлінді.',
+nogai:'Алтын Ордадан кейінгі мемлекеттер мен Ноғай Ордасының тарихына арналған зерттеулер.',
+bulanty:'Archaeology.kz және E-history.kz материалдары. Жазба деректерде шайқастың мерзімі әртүрлі көрсетілуі мүмкін.',
+anyrakay:'Archaeology.kz, E-history.kz және Ш. Уәлиханов атындағы Тарих және этнология институтының материалдары.'
+};
+return localized[r.id]||'Бұл материал бойынша тарихи зерттеулер мен жазба деректер пайдаланылды. Даулы мәліметтерге қатысты ескертпелер мәтінде көрсетілген.';
+}
 function showExtraModule(key){currentModule=key;hideNormal();extra.classList.remove('hidden');renderCurrentExtra()}
-function renderCurrentExtra(){if(currentModule==='map')renderHistoryMap();else if(currentModule==='profiles')renderProfiles();else if(currentModule==='compare')renderBattleCompare();else if(currentModule==='timeline')renderTimelineModule();else if(currentModule==='scenario')renderScenario();else if(currentModule==='sources')renderSources();else if(currentModule==='achievements')renderAchievements()}
+function renderCurrentExtra(){if(currentModule==='map')renderHistoryMap();else if(currentModule==='profiles')renderProfiles();else if(currentModule==='timeline')renderTimelineModule();else if(currentModule==='sources')renderSources();}
 function renderHistoryMap(){
 const l=moduleLang(),k=l==='kz',title=k?'Қазақстан тарихының интерактивті картасы':'Интерактивная карта истории Казахстана';
 const pins=[
@@ -297,7 +328,7 @@ extra.querySelectorAll('[data-map-pin]').forEach(btn=>btn.onclick=()=>{const p=p
 function renderProfiles(){
 const l=moduleLang(),k=l==='kz',items=records.filter(r=>r.type==='rulers');
 extra.innerHTML='<h2>'+(k?'Хандар мен билеушілер':'Ханы и правители')+'</h2><p class="module-muted">'+(k?'Әзірге сайттағы дерекпен толықтырылған билеушілер профилі көрсетілген.':'Показаны профили правителей, для которых уже есть отдельные записи в базе сайта.')+'</p><div class="module-grid">'+items.map(r=>'<article class="module-card profile-card"><div class="profile-mark">♛</div><div><div class="tag">'+safeText(r.year)+'</div><h3>'+safeText(r.title[l])+'</h3><p>'+safeText(r.desc[l])+'</p><button data-profile="'+r.id+'">'+(k?'Профильді ашу':'Открыть профиль')+'</button></div></article>').join('')+'</div>'+(items.length?'':'<p class="muted">'+(k?'Әзірге профиль жоқ.':'Пока нет профилей.')+'</p>');
-extra.querySelectorAll('[data-profile]').forEach(b=>b.onclick=()=>{unlockAchievement('profiles');const r=records.find(x=>x.id===b.dataset.profile);const fields=r.fields[l]||r.fields.ru;extra.innerHTML='<button id="profileBack">← '+(k?'Тізімге қайту':'Назад к списку')+'</button><h2>'+safeText(r.title[l])+'</h2><p class="detail-intro">'+safeText(r.desc[l])+'</p><dl>'+fields.map(x=>'<div><dt>'+safeText(x[0])+'</dt><dd>'+safeText(x[1])+'</dd></div>').join('')+'</dl><div class="notice">'+(k?'Ескерту:':'Примечание:')+' '+r.sources+'</div>';document.getElementById('profileBack').onclick=renderProfiles});
+extra.querySelectorAll('[data-profile]').forEach(b=>b.onclick=()=>{unlockAchievement('profiles');const r=records.find(x=>x.id===b.dataset.profile);const fields=r.fields[l]||r.fields.ru;extra.innerHTML='<button id="profileBack">← '+(k?'Тізімге қайту':'Назад к списку')+'</button><h2>'+safeText(r.title[l])+'</h2><p class="detail-intro">'+safeText(r.desc[l])+'</p><dl>'+fields.map(x=>'<div><dt>'+safeText(x[0])+'</dt><dd>'+safeText(x[1])+'</dd></div>').join('')+'</dl><div class="notice">'+(k?'Ескерту:':'Примечание:')+' '+sourceText(r,l)+'</div>';document.getElementById('profileBack').onclick=renderProfiles});
 }
 function fieldValue(r,pattern,l){const f=r.fields[l]||r.fields.ru;const x=f.find(p=>pattern.test(p[0]));return x?x[1]:(l==='kz'?'Анықталмаған':'Не установлено')}
 function renderBattleCompare(){
@@ -419,18 +450,15 @@ document.getElementById('testsNav').addEventListener('click',showTests);
 document.getElementById('runnerNav').addEventListener('click',showRunner);
 document.getElementById('mapNav').addEventListener('click',()=>showExtraModule('map'));
 document.getElementById('profileNav').addEventListener('click',()=>showExtraModule('profiles'));
-document.getElementById('compareNav').addEventListener('click',()=>showExtraModule('compare'));
 document.getElementById('timelineNav').addEventListener('click',()=>showExtraModule('timeline'));
-document.getElementById('scenarioNav').addEventListener('click',()=>showExtraModule('scenario'));
 document.getElementById('sourcesNav').addEventListener('click',()=>showExtraModule('sources'));
-document.getElementById('achievementsNav').addEventListener('click',()=>showExtraModule('achievements'));
 
 document.querySelectorAll('[data-tab]').forEach(b=>b.addEventListener('click',()=>{extra.classList.add('hidden');showNormal()}));
 const oldRender=window.render;
-document.getElementById('lang').addEventListener('change',()=>{const l=moduleLang(),w=words[l];document.getElementById('testsNav').textContent=w.testsNav;document.getElementById('returnMenu').textContent=l==='kz'?'← Мәзірге оралу':'← Вернуться в меню';document.getElementById('runnerNav').textContent=w.runnerNav;document.getElementById('mapNav').textContent=l==='kz'?'Тарихи карта':'Историческая карта';document.getElementById('profileNav').textContent=l==='kz'?'Хандар профилі':'Профили ханов';document.getElementById('compareNav').textContent=l==='kz'?'Шайқастарды салыстыру':'Сравнить битвы';document.getElementById('timelineNav').textContent=l==='kz'?'Уақыт сызығы':'Временная линия';document.getElementById('scenarioNav').textContent=l==='kz'?'Тарихшы режимі':'Режим историка';document.getElementById('sourcesNav').textContent=l==='kz'?'Дереккөздер':'Источники';document.getElementById('achievementsNav').textContent=l==='kz'?'Жетістіктер':'Достижения';if(!extra.classList.contains('hidden')){if(['map','profiles','compare','timeline','scenario','sources','achievements'].includes(currentModule))renderCurrentExtra();else if(extra.querySelector('#runStart')||extra.querySelector('#runAgain'))renderRunnerHome();else if(extra.querySelector('[data-battle]')||extra.querySelector('#testBack'))renderBattlePicker()}});
+document.getElementById('lang').addEventListener('change',()=>{const l=moduleLang(),w=words[l];document.getElementById('testsNav').textContent=w.testsNav;document.getElementById('returnMenu').textContent=l==='kz'?'← Мәзірге оралу':'← Вернуться в меню';document.getElementById('runnerNav').textContent=w.runnerNav;document.getElementById('mapNav').textContent=l==='kz'?'Тарихи карта':'Историческая карта';document.getElementById('profileNav').textContent=l==='kz'?'Хандар профилі':'Профили ханов';document.getElementById('timelineNav').textContent=l==='kz'?'Уақыт сызығы':'Временная линия';document.getElementById('sourcesNav').textContent=l==='kz'?'Дереккөздер':'Источники';if(!extra.classList.contains('hidden')){if(['map','profiles','timeline','sources'].includes(currentModule))renderCurrentExtra();else if(extra.querySelector('#runStart')||extra.querySelector('#runAgain'))renderRunnerHome();else if(extra.querySelector('[data-battle]')||extra.querySelector('#testBack'))renderBattlePicker()}});
 document.getElementById('returnMenu').textContent='← Вернуться в меню';
 document.getElementById('testsNav').textContent=words.ru.testsNav;
-document.getElementById('runnerNav').textContent=words.ru.runnerNav;document.getElementById('mapNav').textContent='Историческая карта';document.getElementById('profileNav').textContent='Профили ханов';document.getElementById('compareNav').textContent='Сравнить битвы';document.getElementById('timelineNav').textContent='Временная линия';document.getElementById('scenarioNav').textContent='Режим историка';document.getElementById('sourcesNav').textContent='Источники';document.getElementById('achievementsNav').textContent='Достижения';
+document.getElementById('runnerNav').textContent=words.ru.runnerNav;document.getElementById('mapNav').textContent='Историческая карта';document.getElementById('profileNav').textContent='Профили ханов';document.getElementById('timelineNav').textContent='Временная линия';document.getElementById('sourcesNav').textContent='Источники';
 })();
 </script>
 </body></html>
